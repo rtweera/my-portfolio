@@ -1,23 +1,53 @@
 ---
-import { SHARE_LINKS } from "@/constants";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconGlobe from "@/assets/icons/IconGlobe.svg";
+import IconMedium from "@/assets/icons/IconMedium.svg";
 import LinkButton from "./LinkButton.astro";
 
-const URL = Astro.url;
+type Props = {
+  githubURL?: string;
+  mediumURL?: string;
+  liveURL?: string;
+};
+
+const { githubURL, mediumURL, liveURL } = Astro.props;
+
+type ProjectLink = {
+  name: "GitHub" | "Medium" | "Live App";
+  href: string;
+  icon: typeof IconGitHub;
+};
+
+const links: ProjectLink[] = [];
+
+if (githubURL?.trim()) {
+  links.push({ name: "GitHub", href: githubURL.trim(), icon: IconGitHub });
+}
+
+if (mediumURL?.trim()) {
+  links.push({ name: "Medium", href: mediumURL.trim(), icon: IconMedium });
+}
+
+if (liveURL?.trim()) {
+  links.push({ name: "Live App", href: liveURL.trim(), icon: IconGlobe });
+}
 ---
 
 {
-  SHARE_LINKS.length > 0 && (
-    <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
-      <span class="italic">Share this post on:</span>
-      <div class="text-center">
-        {SHARE_LINKS.map(social => (
+  links.length > 0 && (
+    <div class="flex flex-none flex-col items-center justify-center gap-2 md:items-start">
+      <span class="italic">View the project on:</span>
+      <div class="flex flex-wrap justify-center gap-2 md:justify-start">
+        {links.map(link => (
           <LinkButton
-            href={`${social.href + URL}`}
-            class="scale-90 p-2 hover:rotate-6 sm:p-1"
-            title={social.linkTitle}
+            href={link.href}
+            class="p-2 hover:rotate-6"
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`Open project on ${link.name}`}
           >
-            <social.icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
-            <span class="sr-only">{social.linkTitle}</span>
+            <link.icon class="inline-block size-5 opacity-95 transition-transform group-hover:scale-105" />
+            <span class="sr-only">{link.name}</span>
           </LinkButton>
         ))}
       </div>
