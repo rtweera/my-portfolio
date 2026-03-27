@@ -11,7 +11,7 @@ export const HOME_PAGE_CONTENT = {
   about: {
     title: "About",
     paragraphs: [
-      "AI undergraduate at University of Moratuwa (CGPA: 3.89), with experience in small language models, MLOps, and real-world AI systems.",
+      "AI undergraduate at University of Moratuwa (CGPA: 3.86), with experience in small language models, MLOps, and real-world AI systems.",
       "Previously worked as a Research & AI Intern at WSO2, focusing on fine-tuning language models and building automated ML pipelines.",
     ],
     cta: {
