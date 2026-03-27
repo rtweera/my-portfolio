@@ -1,8 +1,42 @@
-<h1>Now</h1>
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SITE } from "@/config";
+import { HOME_PAGE_CONTENT } from "@/data/home";
 
-<ul>
-  <li>Preparing for an AI engineering role with long-term focus on robotics</li>
-  <li>Exploring efficient AI systems and small language models</li>
-  <li>Working on neuro-symbolic AI systems</li>
-  <li>Planning more robotics + hardware projects</li>
-</ul>
+const { currently } = HOME_PAGE_CONTENT;
+
+const nowItems = [
+  ...currently.items,
+  "Planning more robotics + hardware projects",
+];
+
+const layoutProps = {
+  title: `Now | ${SITE.title}`,
+  description: "What I am currently focused on.",
+  scrollSmooth: true,
+};
+---
+
+<Layout {...layoutProps}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-12" data-pagefind-body>
+    <h1 class="inline-block text-2xl font-bold sm:text-3xl">Now</h1>
+    <p class="mt-4">Current priorities and ongoing areas of focus.</p>
+
+    <hr class="my-8 border-dashed" />
+
+    <section class="app-prose max-w-app">
+      <h2 class="text-xl font-semibold tracking-wide">Currently</h2>
+      <ul class="mt-4 list-disc space-y-3 ps-6">
+        {nowItems.map(item => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <hr class="my-8 border-dashed" />
+  </main>
+  <Footer />
+</Layout>
