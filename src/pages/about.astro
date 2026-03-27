@@ -1,0 +1,186 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Socials from "@/components/Socials.astro";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
+
+const layoutProps = {
+  title: `About | ${SITE.title}`,
+  description: "About the AI Engineer behind this portfolio.",
+};
+---
+
+<Layout {...layoutProps}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-12" data-pagefind-body>
+    <section id="about" class="app-prose max-w-app prose-img:border-0">
+      <h1 class="text-2xl tracking-wider sm:text-3xl">About Me</h1>
+
+      <p class="mt-6">
+        I am an Artificial Intelligence undergraduate at the University of
+        Moratuwa, with a strong focus on building practical and efficient AI
+        systems.
+      </p>
+      <p>
+        My work spans small language models, MLOps, and real-world system
+        design. I am particularly interested in how AI systems move beyond
+        isolated models into real-world environments, especially in robotics and
+        edge systems.
+      </p>
+
+    {
+        // only display if at least one social link is enabled
+        SOCIALS.length > 0 && (
+          <div class="mt-4 flex max-sm:flex-col sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
+            <Socials />
+          </div>
+        )
+      }
+
+      <hr class="my-8 border-border" />
+
+      <h2>Experience</h2>
+      <div class="not-prose mt-4 rounded border border-border p-5">
+        <h3 class="text-lg font-semibold">WSO2 - Research &amp; AI Intern</h3>
+        <ul class="mt-4 list-disc space-y-2 ps-6">
+          <li>
+            Developed and fine-tuned small language models using techniques such
+            as LoRA, adapters, and prefix tuning
+          </li>
+          <li>
+            Evaluated models using RAGAS metrics, improving performance of a
+            local model (~60% - ~65%)
+          </li>
+          <li>
+            Built automated MLOps pipelines for training, tracking, and
+            deployment using MLflow, RunPod, and HuggingFace
+          </li>
+          <li>
+            Focused on privacy-sensitive and resource-constrained AI
+            applications
+          </li>
+        </ul>
+      </div>
+
+      <hr class="my-8 border-border" />
+
+      <h2>Education</h2>
+      <div class="not-prose mt-10 space-y-1">
+        <p class="font-semibold text-accent">University of Moratuwa</p>
+        <p>B.Sc. (Hons) in Artificial Intelligence</p>
+        <p>CGPA: 3.86 / 4.00</p>
+        <p>Dean's List: 4/6 semesters</p>
+        <p class="pt-4 text-sm opacity-90">
+          * Strong foundation in Neural Networks, Machine Learning, NLP, and
+          Software Engineering.
+        </p>
+      </div>
+      <div class="not-prose mt-10 space-y-1">
+        <p class="font-semibold text-accent">
+          BCS, The Chartered Institute for IT
+        </p>
+        <p>BCS Level 6 Professional Graduate Diploma in IT</p>
+        <p class="pt-4 text-sm opacity-90">
+          * Gained knowledge in Advanced Database Management Systems, Big Data
+          Management, Programming Paradigms, and Network Information Systems.
+        </p>
+      </div>
+
+      <hr class="my-8 border-border" />
+
+      <h2>Research</h2>
+
+      <div class="not-prose mt-6 rounded border border-border p-5">
+        <h3 class="text-lg font-semibold text-accent">
+          Type II Diabetes Risk Prediction using Multifactor Machine Learning
+        </h3>
+        <p class="mt-1 text-sm opacity-90">
+          IEEE Conference Publication (2026)
+        </p>
+        <ul class="mt-4 list-disc space-y-2 ps-6">
+          <li>
+            Developed a LightGBM-based prediction system using ~100,000 NHANES
+            records integrating laboratory and lifestyle features
+          </li>
+          <li>
+            Designed a multi-stage feature selection pipeline reducing ~5000
+            features to 43 clinically relevant predictors
+          </li>
+          <li>
+            Achieved 95.27% ROC-AUC with 88.48% sensitivity and 87.19%
+            specificity on real-world test distribution
+          </li>
+          <li>
+            Built a practical system capable of handling missing data without
+            imputation, enabling real-world deployment
+          </li>
+        </ul>
+      </div>
+
+      <div class="not-prose mt-4 rounded border border-border p-5">
+        <h3 class="text-lg font-semibold text-accent">
+          Small Language Models for Privacy-Critical Applications
+        </h3>
+        <p class="mt-1 text-sm opacity-90">Independent Review (2025)</p>
+        <ul class="mt-4 list-disc space-y-2 ps-6">
+          <li>
+            Explored compression techniques such as quantization, distillation,
+            and pruning
+          </li>
+          <li>
+            Analyzed privacy-preserving techniques (DP, SMPC, FL, HE) for SLMs
+          </li>
+          <li>
+            Investigated future trends including agentic and multi-agent SLM
+            systems
+          </li>
+        </ul>
+      </div>
+
+      <hr class="my-8 border-border" />
+
+      <h2>Interests</h2>
+      <ul class="not-prose mt-4 list-disc space-y-2 ps-6">
+        <li>Efficient AI systems (small language models, optimization)</li>
+        <li>Robotics and embodied AI</li>
+        <li>Neuro-symbolic systems and reasoning</li>
+        <li>Machine Perception</li>
+        <li>Real-world deployment of AI systems</li>
+      </ul>
+
+      <hr class="my-8 border-border" />
+
+      <h2>Personal Note</h2>
+      <p>
+        I enjoy building systems that go beyond theory and work in real-world
+        settings. One of my most impactful experiences was developing a fully
+        autonomous chess-playing machine, which sparked my interest in robotics
+        and hardware-integrated AI systems.
+      </p>
+
+      <p class="mt-6">
+        Outside of work, I enjoy badminton, playing guitar, and reading mystery
+        novels.
+      </p>
+
+      <p class="mt-6">
+        Feel free to explore my projects or reach out if you'd like to connect.
+      </p>
+
+      <div class="not-prose mt-4 text-center">
+        <LinkButton href="/posts/">
+          Explore Projects
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
+        </LinkButton>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
