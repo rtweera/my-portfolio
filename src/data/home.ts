@@ -20,19 +20,19 @@ export const HOME_PAGE_CONTENT = {
     },
   },
   currently: {
-    title: "Currently",
+    title: "Now",
     items: [
       "Preparing for an AI engineering role with long-term focus on robotics",
       "Exploring efficient AI systems and small language models",
       "Working on neuro-symbolic AI systems",
     ],
     cta: {
-      text: "More info",
+      text: "More Info",
       href: "/now/",
     },
   },
   focusAreas: {
     title: "Focus Areas",
-    text: "Small Language Models · MLOps · NLP · Embedded Systems · Robotics",
+    text: "Small Language Models · MLOps · NLP · Computer Vision · Robotics",
   },
 } as const;
