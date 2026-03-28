@@ -8,7 +8,7 @@ const breadcrumbList = currentUrlPath.split("/").slice(1);
 
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
-if (breadcrumbList[0] === "posts") {
+if (breadcrumbList[0] === "projects") {
   breadcrumbList.splice(0, 2, `Projects (page ${breadcrumbList[1] || 1})`);
 }
 
