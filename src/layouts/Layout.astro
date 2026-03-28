@@ -172,5 +172,21 @@ const structuredData = {
 
     <!-- Load full theme logic -->
     <script src="../scripts/theme.ts"></script>
+    <!-- Scroll to search results -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+
+      if (query) {
+        setTimeout(() => {
+          // scroll to first match
+          const w = window as any;
+
+          if (typeof w.find === "function") {
+            w.find(query);
+          }
+        }, 300);
+      }
+    </script>
   </body>
 </html>

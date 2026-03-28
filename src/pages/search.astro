@@ -58,6 +58,24 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : "/";
         },
       });
 
+      // Append search query to result links
+      document.addEventListener("click", e => {
+        const target = (e.target as HTMLElement | null)?.closest(
+          ".pagefind-ui__result-link"
+        ) as HTMLAnchorElement | null;
+
+        if (!target) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get("q");
+
+        if (query) {
+          const url = new URL(target.href);
+          url.searchParams.set("q", query);
+          target.href = url.toString();
+        }
+      });
+
       // If search param exists (eg: search?q=astro), trigger search
       const query = params.get("q");
       if (query) {
