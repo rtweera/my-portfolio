@@ -23,19 +23,21 @@ const layoutProps = {
       <h1 class="text-2xl tracking-wider font-semibold sm:text-3xl">About Me</h1>
 
       <p class="mt-6">
-        I am Ravindu Tharuka Weerasinghe, an Artificial Intelligence undergraduate 
-        at the University of Moratuwa, with a strong focus on building practical 
-        and efficient AI systems.
+        I am Ravindu Tharuka Weerasinghe, an Artificial Intelligence undergraduate
+        at the University of Moratuwa (CGPA: 3.86, Dean's List 4/6 semesters), with
+        hands-on experience across small language models, MLOps, embedded systems,
+        and production AI deployment.
       </p>
       <p>
-        My work spans small language models, MLOps, and real-world system
-        design. I am particularly interested in how AI systems move beyond
-        isolated models into real-world environments, especially in robotics and
-        edge systems.
+        My work is driven by a single question: what does it take for an AI system to
+        actually work in the real world? That means thinking beyond benchmark accuracy —
+        about latency, resource constraints, deployment pipelines, and the physical
+        environments AI systems eventually have to operate in. I'm particularly drawn
+        to the intersection of AI and robotics, and to making AI smaller, faster,
+        and more explainable.
       </p>
 
-    {
-        // only display if at least one social link is enabled
+      {
         SOCIALS.length > 0 && (
           <div class="not-prose mt-4 flex max-sm:flex-col sm:items-center text-foreground">
             <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
@@ -47,24 +49,39 @@ const layoutProps = {
       <hr class="my-8 border-border" />
 
       <h2>Experience</h2>
+
       <div class="not-prose mt-4 rounded border border-border p-5">
-        <h3 class="text-lg font-semibold">WSO2 - Research &amp; AI Intern</h3>
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <h3 class="text-lg font-semibold">WSO2 — Research &amp; AI Intern</h3>
+          <p class="mt-1 text-sm opacity-60">Feb 2025 – Aug 2025</p>
+        </div>
+        <p class="mt-2 text-sm opacity-75">
+          Worked within the AI research team on small language model fine-tuning,
+          MLOps pipeline automation, and production AI tooling for the Choreo platform.
+        </p>
         <ul class="mt-4 list-disc space-y-2 ps-6">
           <li>
-            Developed and fine-tuned small language models using techniques such
-            as LoRA, adapters, and prefix tuning
+            Researched and applied fine-tuning techniques — LoRA, Adaptor, and Prefix Tuning —
+            to domain-adapt language models to Choreo documentation; measured improvements
+            using RAGAS evaluation metrics, achieving a lift from ~60% to ~65%
           </li>
           <li>
-            Evaluated models using RAGAS metrics, improving performance of a
-            local model (~60% - ~65%)
+            Co-developed a fully automated MLOps pipeline: GitHub commits trigger
+            RunPod GPU instance provisioning, run fine-tuning jobs, push trained models
+            to Hugging Face Hub, and log all runs to a self-hosted MLflow server —
+            end-to-end without manual intervention
           </li>
           <li>
-            Built automated MLOps pipelines for training, tracking, and
-            deployment using MLflow, RunPod, and HuggingFace
+            Designed and deployed <em>Oxy's Gallery</em> — a FastAPI image service hosted
+            on WSO2 Choreo for WSO2Con Asia, accepting live images from a Unitree Go2
+            robot, displaying them in a responsive gallery, and enabling attendees to
+            download images via QR code
           </li>
           <li>
-            Focused on privacy-sensitive and resource-constrained AI
-            applications
+            Developed the HubSpot video conferencing connector in Ballerina
+          </li>
+          <li>
+            Focused throughout on privacy-sensitive and resource-constrained AI applications
           </li>
         </ul>
       </div>
@@ -72,25 +89,35 @@ const layoutProps = {
       <hr class="my-8 border-border" />
 
       <h2>Education</h2>
-      <div class="not-prose mt-10 space-y-1">
+
+      <div class="not-prose mt-6 space-y-1">
         <p class="font-semibold text-accent">University of Moratuwa</p>
-        <p>B.Sc. (Hons) in Artificial Intelligence</p>
-        <p>CGPA: 3.86 / 4.00</p>
-        <p>Dean's List: 4/6 semesters</p>
-        <p class="pt-4 text-sm opacity-90">
-          * Strong foundation in Neural Networks, Machine Learning, NLP, and
-          Software Engineering.
+        <p>B.Sc. (Hons) in Artificial Intelligence · 2022 – Present</p>
+        <p>CGPA: 3.86 / 4.00 &nbsp;·&nbsp; Dean's List: 4 of 6 semesters</p>
+        <p class="pt-3 text-sm opacity-75">
+          Core areas: Neural Networks, Machine Learning, NLP, Computer Vision,
+          Robotics, Software Engineering, and AI Systems.
         </p>
       </div>
-      <div class="not-prose mt-10 space-y-1">
-        <p class="font-semibold text-accent">
-          BCS, The Chartered Institute for IT
+
+      <div class="not-prose mt-8 space-y-1">
+        <p class="font-semibold text-accent">BCS, The Chartered Institute for IT</p>
+        <p>Professional Graduate Diploma in IT · 2021 – 2025</p>
+        <p class="pt-3 text-sm opacity-75">
+          Advanced Database Management Systems, Big Data Management,
+          Programming Paradigms, and Network Information Systems.
         </p>
-        <p>BCS Level 6 Professional Graduate Diploma in IT</p>
-        <p class="pt-4 text-sm opacity-90">
-          * Gained knowledge in Advanced Database Management Systems, Big Data
-          Management, Programming Paradigms, and Network Information Systems.
-        </p>
+      </div>
+
+      <div class="not-prose mt-8 space-y-1">
+        <p class="font-semibold text-accent">SLIIT</p>
+        <p>Certificate in Cybersecurity &amp; Digital Forensics · 2021 – 2022</p>
+      </div>
+
+      <div class="not-prose mt-8 space-y-1">
+        <p class="font-semibold text-accent">Ananda College</p>
+        <p>GCE Advanced Level · Z-score: 2.37 · Combined Mathematics, Physics, ICT</p>
+        <p>GCE Ordinary Level · 9A passes</p>
       </div>
 
       <hr class="my-8 border-border" />
@@ -99,27 +126,29 @@ const layoutProps = {
 
       <div class="not-prose mt-6 rounded border border-border p-5">
         <h3 class="text-lg font-semibold text-accent">
-          Type II Diabetes Risk Prediction using Multifactor Machine Learning
+          Type II Diabetes Risk Prediction: A Multifactor Approach Using Laboratory and Lifestyle Features
         </h3>
-        <p class="mt-1 text-sm opacity-90">
-          IEEE Conference Publication (2026)
-        </p>
+        <p class="mt-1 text-sm opacity-60">IEEE Conference Publication · 2026</p>
         <ul class="mt-4 list-disc space-y-2 ps-6">
           <li>
-            Developed a LightGBM-based prediction system using ~100,000 NHANES
-            records integrating laboratory and lifestyle features
+            Analysed 100,000+ NHANES records (1988–2018) for multiclass diabetes prediction:
+            Not Diabetic, Type 2 Diabetes, and Other
           </li>
           <li>
-            Designed a multi-stage feature selection pipeline reducing ~5000
-            features to 43 clinically relevant predictors
+            Designed a multi-stage feature selection pipeline (XGBoost, SHAP) reducing ~5,000
+            candidate features to 43 clinically practical predictors obtainable in real settings
           </li>
           <li>
-            Achieved 95.27% ROC-AUC with 88.48% sensitivity and 87.19%
-            specificity on real-world test distribution
+            Achieved <strong>95.27% ROC-AUC</strong> with 88.48% sensitivity and 87.19%
+            specificity on the real-world held-out test distribution
           </li>
           <li>
-            Built a practical system capable of handling missing data without
-            imputation, enabling real-world deployment
+            Built the system to handle missing data without imputation — a deliberate
+            design choice for practical clinical deployment
+          </li>
+          <li>
+            Applied Optuna hyperparameter search with 10-fold stratified cross-validation
+            and full MLflow experiment tracking for reproducibility
           </li>
         </ul>
       </div>
@@ -128,53 +157,111 @@ const layoutProps = {
         <h3 class="text-lg font-semibold text-accent">
           Small Language Models for Privacy-Critical Applications
         </h3>
-        <p class="mt-1 text-sm opacity-90">Independent Review (2025)</p>
+        <p class="mt-1 text-sm opacity-60">Independent Review · 2025</p>
         <ul class="mt-4 list-disc space-y-2 ps-6">
           <li>
-            Explored compression techniques such as quantization, distillation,
-            and pruning
+            In-depth review of SLMs for privacy-sensitive edge deployment —
+            covering compression techniques including quantization, distillation, and pruning
           </li>
           <li>
-            Analyzed privacy-preserving techniques (DP, SMPC, FL, HE) for SLMs
+            Analysed privacy-preserving frameworks: Differential Privacy, Secure Multi-Party
+            Computation, Federated Learning, and Homomorphic Encryption applied to on-device inference
           </li>
           <li>
-            Investigated future trends including agentic and multi-agent SLM
-            systems
+            Reviewed emerging directions including agentic SLMs and multi-agent systems
+            operating at the edge
           </li>
         </ul>
       </div>
 
       <hr class="my-8 border-border" />
 
+      <h2>Co-curricular</h2>
+
+      <div class="not-prose mt-4 space-y-6">
+        <div>
+          <p class="font-semibold">AI Project Coordinator</p>
+          <p class="text-sm opacity-70">Faculty of IT, University of Moratuwa · 2024 – Present</p>
+          <p class="mt-1 text-sm opacity-60">
+            Coordinating AI-focused student projects and initiatives within the faculty.
+          </p>
+        </div>
+        <div>
+          <p class="font-semibold">IES Labs — R&amp;D Pillar</p>
+          <p class="text-sm opacity-70">Faculty of IT, University of Moratuwa · 2024 – Present</p>
+        </div>
+        <div>
+          <p class="font-semibold">Batch 22 Mentorship</p>
+          <p class="text-sm opacity-70">Faculty of IT, University of Moratuwa</p>
+          <p class="mt-1 text-sm opacity-60">
+            Mentored junior students across two tracks — software projects (2024–2025)
+            and hardware projects (2023–2024).
+          </p>
+        </div>
+      </div>
+
+      <hr class="my-8 border-border" />
+
+      <h2>Competitions</h2>
+
+      <div class="not-prose mt-4 space-y-3">
+        <div class="flex items-baseline gap-3">
+          <span class="font-semibold text-accent min-w-[72px]">Winner</span>
+          <span class="text-foreground"><a href="https://www.linkedin.com/posts/statistics-society-university-of-sri-jayewardenepura_dataxplore2-statsoc-fas-activity-7464535283363897344-gQjj?utm_source=share&utm_medium=member_desktop&rcm=ACoAADeHz3oBMfmyvWc1k3ccQyy2x2z5o32Iamg" target="_blank" rel="noopener noreferrer">DataXplore 2.0 2026</a></span>
+        </div>
+        <div class="flex items-baseline gap-3">
+          <span class="font-semibold text-accent min-w-[72px]">Merit</span>
+          <span class="text-foreground">DataStorm 6.0 2025</span>
+        </div>
+        <div class="flex items-baseline gap-3">
+          <span class="font-semibold text-accent min-w-[72px]">Winner</span>
+          <span class="text-foreground"><a href="https://tech-triathlon.rootcode.io/teams/2024/The%20X%20Order" target="_blank" rel="noopener noreferrer">TechTriathlon 2024</a></span>
+        </div>
+        <div class="flex items-baseline gap-3">
+          <span class="font-semibold text-accent min-w-[72px]">Top 10</span>
+          <span class="text-foreground">CodeRush 2023</span>
+        </div>
+        <div class="flex items-baseline gap-3">
+          <span class="font-semibold text-accent min-w-[72px]">Merit</span>
+          <span class="text-foreground">CodeFest 2023</span>
+        </div>
+      </div>
+
+      <hr class="my-8 border-border" />
+
       <h2>Interests</h2>
       <ul class="not-prose mt-4 list-disc space-y-2 ps-6">
-        <li>Efficient AI systems (small language models, optimization)</li>
+        <li>Efficient AI systems — small language models, quantization, on-device inference</li>
         <li>Robotics and embodied AI</li>
-        <li>Neuro-symbolic systems and reasoning</li>
-        <li>Machine Perception</li>
-        <li>Real-world deployment of AI systems</li>
+        <li>Neuro-symbolic reasoning and hybrid AI architectures</li>
+        <li>Machine perception and computer vision</li>
+        <li>Real-world deployment in resource-constrained environments</li>
       </ul>
 
       <hr class="my-8 border-border" />
 
       <h2>Personal Note</h2>
       <p>
-        I enjoy building systems that go beyond theory and work in real-world
-        settings. One of my most impactful experiences was developing a fully
-        autonomous chess-playing machine, which sparked my interest in robotics
-        and hardware-integrated AI systems.
+        The project that shaped how I think about AI most is AutoChess — a fully
+        autonomous chess-playing machine built and exhibited at EXMO 2023. I led the
+        team as electronics designer, coded the sensing module, and worked through
+        every layer from KiCad PCB design to embedded C++ firmware. Getting a physical
+        system to work reliably — not just in a demo but consistently, across sixty-four
+        squares and every edge case in chess — taught me things that purely software
+        work simply doesn't.
+      </p>
+      <p class="mt-4">
+        That experience anchors a lot of what I find compelling now: AI that functions
+        under real constraints, with real failure modes, in the real world. It's a harder
+        problem than most benchmarks suggest.
+      </p>
+      <p class="mt-4">
+        Outside of work, I play badminton and guitar, and tend to read a lot of mystery
+        novels. They share something with engineering — the satisfaction of a
+        well-constructed problem, and a solution that feels inevitable once you see it.
       </p>
 
-      <p class="mt-6">
-        Outside of work, I enjoy badminton, playing guitar, and reading mystery
-        novels.
-      </p>
-
-      <p class="mt-6">
-        Feel free to explore my projects or reach out if you'd like to connect.
-      </p>
-
-      <div class="not-prose mt-4 text-center">
+      <div class="not-prose mt-8 text-center">
         <LinkButton href="/projects/">
           Explore Projects
           <IconArrowRight class="inline-block rtl:-rotate-180" />
