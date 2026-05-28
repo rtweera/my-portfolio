@@ -80,8 +80,13 @@ const { hero, about, currently, focusAreas, highlights, techStack } = HOME_PAGE_
       <h2 class="text-2xl font-semibold tracking-wide">{highlights.title}</h2>
       <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {
-          highlights.items.map(({ label, description, href }) => (
-            <li class="rounded border border-border p-4">
+          highlights.items.map(({ label, description, href }, i) => (
+            <li class:list={[
+              "rounded border border-border p-4",
+              highlights.items.length % 2 !== 0 && i === highlights.items.length - 1
+                ? "sm:col-span-2"
+                : "",
+            ]}>
               {href ? (
                 <a
                   href={href}

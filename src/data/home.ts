@@ -62,6 +62,11 @@ export const HOME_PAGE_CONTENT = {
         href: undefined,
       },
       {
+        label: "DataXplore 2026",
+        description: "Winner",
+        href: undefined,
+      },
+      {
         label: "EXMO 2023",
         description:
           "Exhibited AutoChess — a fully autonomous physical chess-playing machine",
