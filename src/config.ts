@@ -1,9 +1,10 @@
 export const SITE = {
-  website: "https://astro-paper.pages.dev/", // replace this with your deployed domain
-  author: "Sat Naing",
-  profile: "https://satnaing.dev/",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "Ravindu Weerasinghe",
+  website: "https://rtweera.page/",
+  author: "Ravindu Tharuka Weerasinghe",
+  profile: "https://rtweera.page/",
+  desc: "Portfolio of Ravindu Tharuka Weerasinghe — AI Engineer and undergraduate at University of Moratuwa, specializing in small language models, MLOps, and real-world AI systems.",
+  title: "Ravindu Tharuka Weerasinghe",
+  displayTitle: "Ravindu Weerasinghe",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
@@ -14,7 +15,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "Edit page",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    url: "https://github.com/rtweera/my-portfolio/edit/main/",
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"
