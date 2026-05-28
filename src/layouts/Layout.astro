@@ -48,6 +48,24 @@ const structuredData = {
     },
   ],
 };
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ravindu Tharuka Weerasinghe",
+  alternateName: "Ravindu Weerasinghe",
+  url: SITE.website,
+  sameAs: [
+    "https://github.com/rtweera",
+    "https://www.linkedin.com/in/rtweera/",
+  ],
+  jobTitle: "AI Engineer",
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "University of Moratuwa",
+  },
+  description: SITE.desc,
+};
 ---
 
 <!doctype html>
@@ -74,6 +92,7 @@ const structuredData = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    <meta name="keywords" content="Ravindu Tharuka Weerasinghe, Ravindu Weerasinghe, AI Engineer, Machine Learning, MLOps, Small Language Models, University of Moratuwa, rtweera" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Facebook -->
@@ -112,6 +131,12 @@ const structuredData = {
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify(structuredData)}
+    />
+    <!-- Person schema for name identity -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(personSchema)}
     />
 
     <!-- Enable RSS feed auto-discovery  -->
