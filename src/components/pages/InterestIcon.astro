@@ -1,0 +1,94 @@
+---
+interface Props {
+  kind:
+    | "ai"
+    | "vision"
+    | "nlp"
+    | "distributed"
+    | "agents"
+    | "robotics"
+    | "electronics"
+    | "security";
+}
+
+const { kind } = Astro.props;
+---
+
+<svg class="interest-icon" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+  {
+    kind === "ai" && (
+      <g>
+        <rect x="9" y="9" width="18" height="18" />
+        <path d="M13 15h10m-10 5h7m-7 4h9M13 4v5m5-5v5m5-5v5M13 27v5m5-5v5m5-5v5M4 13h5m-5 5h5m-5 5h5m18-10h5m-5 5h5m-5 5h5" />
+        <path d="M13 15h10" class="interest-icon-accent" />
+      </g>
+    )
+  }
+  {
+    kind === "vision" && (
+      <g>
+        <path d="M3 18s5.5-9 15-9 15 9 15 9-5.5 9-15 9S3 18 3 18Z" />
+        <circle cx="18" cy="18" r="5" />
+        <circle cx="18" cy="18" r="2" class="interest-icon-accent-fill" />
+      </g>
+    )
+  }
+  {
+    kind === "nlp" && (
+      <g>
+        <path d="M5 7h26v18H17l-7 6v-6H5z" />
+        <path d="M11 13h14m-14 6h9" />
+        <path d="M11 13h14" class="interest-icon-accent" />
+      </g>
+    )
+  }
+  {
+    kind === "distributed" && (
+      <g>
+        <path d="m8 10 10 8 10-8M8 26l10-8 10 8" />
+        <circle cx="8" cy="10" r="4" class="interest-icon-accent-fill" />
+        <circle cx="28" cy="10" r="4" />
+        <circle cx="18" cy="18" r="4" />
+        <circle cx="8" cy="26" r="4" />
+        <circle cx="28" cy="26" r="4" />
+      </g>
+    )
+  }
+  {
+    kind === "agents" && (
+      <g>
+        <circle cx="18" cy="18" r="5" class="interest-icon-accent-fill" />
+        <circle cx="18" cy="18" r="12" />
+        <circle cx="18" cy="6" r="3" />
+        <circle cx="29" cy="17" r="3" />
+        <circle cx="10" cy="27" r="3" />
+      </g>
+    )
+  }
+  {
+    kind === "robotics" && (
+      <g>
+        <path d="M8 14h20v16H8zM18 7v7m-4 7h.1m8 0h.1M13 25h10" />
+        <path d="M18 4v3" class="interest-icon-accent" />
+        <circle cx="18" cy="4" r="2" class="interest-icon-accent-fill" />
+        <path d="M4 19h4m20 0h4" />
+      </g>
+    )
+  }
+  {
+    kind === "electronics" && (
+      <g>
+        <path d="M3 19h7l4-9 7 17 4-8h8" />
+        <path d="M14 10 21 27" class="interest-icon-accent" />
+      </g>
+    )
+  }
+  {
+    kind === "security" && (
+      <g>
+        <path d="M18 4 29 8v9c0 7-4 12-11 16C11 29 7 24 7 17V8z" />
+        <path d="m13 18 4 4 7-8" class="interest-icon-accent" />
+      </g>
+    )
+  }
+</svg>

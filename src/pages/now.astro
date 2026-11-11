@@ -2,41 +2,170 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ProfileIllustration from "@/components/pages/ProfileIllustration.astro";
 import { SITE } from "@/config";
-import { HOME_PAGE_CONTENT } from "@/data/home";
-
-const { currently } = HOME_PAGE_CONTENT;
-
-const nowItems = [
-  ...currently.items,
-  "Planning more robotics + hardware projects",
-];
+import { NOW_PAGE_CONTENT } from "@/data/now";
+import "@/styles/about-now.css";
 
 const layoutProps = {
   title: `Now | ${SITE.title}`,
-  description: "What I am currently focused on.",
+  description:
+    "A snapshot of what I am working on, learning and exploring now.",
   scrollSmooth: true,
 };
 ---
 
 <Layout {...layoutProps}>
   <Header />
-  <Breadcrumb />
-  <main id="main-content" class="app-layout pb-12" data-pagefind-body>
-    <h1 class="inline-block text-2xl font-semibold sm:text-3xl">Now</h1>
-    <p class="mt-4">My current priorities and ongoing areas of focus.</p>
-
-    <hr class="my-8 border-dashed" />
-
-    <section class="app-prose max-w-app">
-      <h2 class="text-xl font-semibold tracking-wide">Currently</h2>
-      <ul class="mt-4 list-disc space-y-3 ps-6">
-        {nowItems.map(item => <li>{item}</li>)}
-      </ul>
+  <main
+    id="main-content"
+    class="about-now-page now-page app-layout"
+    data-pagefind-body
+  >
+    <section class="profile-hero now-hero" aria-labelledby="now-title">
+      <div class="profile-hero-copy">
+        <p class="profile-kicker">A current snapshot</p>
+        <h1 id="now-title">
+          What I’m working on and exploring <span class="profile-highlight"
+            >now.</span
+          >
+        </h1>
+        <p class="profile-hero-intro">
+          This page is a brief view of my current focus. It will change as my
+          work and interests develop.
+        </p>
+        <p class="now-updated">
+          <span class="now-updated-mark" aria-hidden="true"></span>Last updated <time
+            datetime={NOW_PAGE_CONTENT.lastUpdated}
+            >{NOW_PAGE_CONTENT.lastUpdatedLabel}</time
+          >
+        </p>
+      </div>
+      <figure class="profile-hero-visual now-hero-visual">
+        <ProfileIllustration mode="now" />
+        <figcaption class="profile-visual-caption">
+          A cycle of building, observing and improving
+        </figcaption>
+      </figure>
     </section>
 
-    <hr class="my-8 border-dashed" />
+    <section class="now-focus profile-section" aria-labelledby="focus-title">
+      <div class="now-focus-copy">
+        <SectionHeading
+          title="Currently focused on"
+          label="01 / Focus"
+          id="focus-title"
+        />
+        <ol class="now-focus-list">
+          {
+            NOW_PAGE_CONTENT.focus.map((item, index) => (
+              <li>
+                <span class="now-index">0{index + 1}</span>
+                <div>
+                  <>
+                    <h3>{item.title}</h3>
+                    <p>{item.detail}</p>
+                  </>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <aside
+        class="now-focus-visual"
+        aria-label="Focus across software, intelligent systems and reliability"
+      >
+        <div class="now-focus-spectrum">
+          <p><span>Software</span><b>Engineering foundations</b></p>
+          <p><span>Systems</span><b>Backend · messaging · reliability</b></p>
+          <p><span>Intelligence</span><b>AI · machine learning</b></p>
+          <i aria-hidden="true"></i>
+        </div>
+      </aside>
+    </section>
+
+    <section
+      class="now-learning profile-section"
+      aria-labelledby="learning-title"
+    >
+      <div class="now-learning-visual">
+        <ProfileIllustration mode="learning" />
+      </div>
+      <div class="now-learning-copy">
+        <SectionHeading
+          title="Learning and exploring"
+          label="02 / Learning"
+          id="learning-title"
+          aside="Areas I’m building familiarity with at my own pace."
+        />
+        <ul class="now-learning-list">
+          {
+            NOW_PAGE_CONTENT.learning.map(item => (
+              <li>
+                <>
+                  <h3>{item.title}</h3>
+                  <p>{item.detail}</p>
+                </>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="now-in-progress profile-section"
+      aria-labelledby="progress-title"
+    >
+      <SectionHeading
+        title="In progress"
+        label="03 / Personal work"
+        id="progress-title"
+      />
+      <article class="now-project-row">
+        <div class="now-project-art" aria-hidden="true">
+          <span class="now-project-line now-project-line-a"></span><span
+            class="now-project-line now-project-line-b"></span><span
+            class="now-project-node">R</span
+          ><span class="now-project-node">AI</span><span
+            class="now-project-node">SYS</span
+          >
+        </div>
+        <div class="now-project-copy">
+          <p class="profile-eyebrow">Personal project</p><h3>
+            {NOW_PAGE_CONTENT.inProgress.title}
+          </h3><p>{NOW_PAGE_CONTENT.inProgress.detail}</p>
+        </div>
+        <a href="/" class="profile-text-link"
+          >View the site <span aria-hidden="true">↗</span></a
+        >
+      </article>
+    </section>
+
+    <section class="now-next profile-section" aria-labelledby="next-title">
+      <div class="now-next-heading">
+        <SectionHeading
+          title="Looking ahead"
+          label="04 / Next"
+          id="next-title"
+          aside="Intentions, rather than a fixed checklist."
+        />
+      </div>
+      <ol class="now-next-list">
+        {
+          NOW_PAGE_CONTENT.next.map((item, index) => (
+            <li>
+              <>
+                <span class="now-index">0{index + 1}</span>
+                <p>{item}</p>
+              </>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
   </main>
   <Footer />
 </Layout>
