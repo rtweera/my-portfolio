@@ -4,6 +4,8 @@ description: "An NLP project exploring clickbait headline detection using a CNN-
 pubDatetime: 2024-08-20
 tags: ["NLP", "Deep Learning", "TensorFlow", "Transformers", "Python"]
 featured: false
+heroSummary: "A supervised CNN headline classifier alongside an exploratory transformer-embedding approach to unsupervised detection."
+projectVisual: "clickbait"
 githubURL: "https://github.com/rtweera/clickbait-detection"
 ---
 

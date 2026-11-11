@@ -4,6 +4,8 @@ description: "A multi-technique machine translation pipeline for English to Sinh
 pubDatetime: 2025-10-15
 tags: ["NLP", "Machine Translation", "MBART", "Sinhala", "LLM", "Gradio", "Python"]
 featured: false
+heroSummary: "A three-stage English-to-Sinhala workflow combines spelling correction, text simplification and quantized MBART translation."
+projectVisual: "translation"
 githubURL: "https://github.com/rtweera/NLP-machine-translation"
 ---
 

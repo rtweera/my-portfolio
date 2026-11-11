@@ -4,6 +4,8 @@ description: "An in-progress production-oriented RAG system built around LangGra
 pubDatetime: 2026-05-10
 tags: ["RAG", "LangGraph", "FastAPI", "React", "pgvector", "Redis", "Docker", "AI Engineering"]
 featured: true
+heroSummary: "An in-progress retrieval platform routes questions through specialized agents, semantic search and caching before producing a grounded response."
+projectVisual: "rag-platform"
 githubURL: "https://github.com/rtweera/adaptive-multi-agent-rag"
 ---
 

@@ -4,6 +4,8 @@ description: "A PC configuration assistant that combines a Small Language Model 
 pubDatetime: 2025-11-20
 tags: ["Neuro-Symbolic AI", "Prolog", "LLM", "LangChain", "Ollama", "Python", "Chainlit"]
 featured: true
+heroSummary: "A local language model extracts PC requirements while a Prolog knowledge base checks hardware compatibility."
+projectVisual: "neuro-symbolic"
 githubURL: "https://github.com/rtweera/neuro-symbolic-pc-builder"
 ---
 

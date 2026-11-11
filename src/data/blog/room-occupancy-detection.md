@@ -4,6 +4,8 @@ description: "A machine learning project predicting room occupancy from environm
 pubDatetime: 2024-07-18
 tags: ["Machine Learning", "Time Series", "LightGBM", "XGBoost", "SHAP", "Python"]
 featured: false
+heroSummary: "An environmental-sensor ML pipeline preserves time order during validation and explains model decisions with SHAP."
+projectVisual: "occupancy"
 githubURL: "https://github.com/rtweera/room-occupancy-detection"
 ---
 

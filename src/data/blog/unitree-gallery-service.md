@@ -4,6 +4,8 @@ description: "A FastAPI-based image gallery microservice built for WSO2Con — e
 pubDatetime: 2025-07-28
 tags: ["FastAPI", "Python", "REST API", "QR Code", "Jinja2"]
 featured: false
+heroSummary: "A lightweight event gallery service connects image uploads with QR-based viewing and sharing."
+projectVisual: "gallery-service"
 githubURL: "https://github.com/rtweera/unitree-gallery-service"
 ---
 

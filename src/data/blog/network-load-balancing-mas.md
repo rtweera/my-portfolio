@@ -4,6 +4,8 @@ description: "An agent-based simulation of decentralized network load balancing 
 pubDatetime: 2024-12-01
 tags: ["Multi-Agent Systems", "AI", "Mesa", "Pygame", "Python", "Simulation"]
 featured: false
+heroSummary: "A Mesa simulation explores how user and server agents negotiate load and adapt without a central coordinator."
+projectVisual: "load-balancing"
 githubURL: "https://github.com/rtweera/Network-Load-Balancing-using-MAS"
 ---
 

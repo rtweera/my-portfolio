@@ -4,6 +4,8 @@ description: "A multiclass ML system predicting Type II diabetes risk from NHANE
 pubDatetime: 2026-02-01
 tags: ["Machine Learning", "Healthcare AI", "LightGBM", "MLflow", "Research", "Python"]
 featured: true
+heroSummary: "A published study compares laboratory and lifestyle features for three-class Type II diabetes risk prediction."
+projectVisual: "diabetes-research"
 githubURL: "https://github.com/Diabetic-Research-Group/diabetes-prediction"
 liveURL: "https://ieeexplore.ieee.org/document/11499955"
 ---

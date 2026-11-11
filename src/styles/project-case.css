@@ -41,6 +41,10 @@
 .project-hero--illustrated {
   grid-template-columns: minmax(300px, 0.86fr) minmax(0, 1.14fr);
 }
+.project-hero.project-hero--illustrated h1 {
+  max-width: 15ch;
+  font-size: clamp(3.1rem, 4.2vw, 4.4rem);
+}
 .project-hero-copy {
   min-width: 0;
 }
@@ -264,6 +268,39 @@
   stroke: var(--foreground);
   stroke-width: 1.3;
 }
+.hero-project-drawing {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero-project-line {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero-project-square {
+  fill: var(--signal);
+  fill-opacity: 0.52;
+  stroke: var(--foreground);
+  stroke-width: 1.15;
+}
+.hero-project-node {
+  fill: var(--signal);
+  stroke: var(--foreground);
+  stroke-width: 1.25;
+}
+.hero-project-rule {
+  stroke: var(--border);
+  stroke-width: 1.2;
+}
+.hero-project-tick {
+  stroke: var(--foreground-muted);
+  stroke-width: 1.2;
+}
 
 .project-overview {
   display: grid;
@@ -312,10 +349,10 @@
   padding: 0;
   list-style: none;
 }
-.case-architecture--sentiview .case-flow {
+.case-architecture--steps-5 .case-flow {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
-.case-architecture--blog-service .case-flow {
+.case-architecture--steps-4 .case-flow {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .case-flow-step {
@@ -556,8 +593,8 @@
     gap: 1.6rem;
   }
   .case-flow,
-  .case-architecture--sentiview .case-flow,
-  .case-architecture--blog-service .case-flow {
+  .case-architecture--steps-5 .case-flow,
+  .case-architecture--steps-4 .case-flow {
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
@@ -611,9 +648,11 @@
     font-size: 0.59rem;
   }
   .project-hero h1,
-  .project-hero:not(.project-hero--illustrated) h1 {
+  .project-hero:not(.project-hero--illustrated) h1,
+  .project-hero.project-hero--illustrated h1 {
     max-width: 100%;
-    font-size: clamp(3.4rem, 13vw, 5.3rem);
+    font-size: clamp(2.6rem, 10vw, 4.2rem);
+    line-height: 0.95;
   }
   .project-lead {
     max-width: 40ch;

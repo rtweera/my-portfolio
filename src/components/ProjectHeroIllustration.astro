@@ -1,6 +1,26 @@
 ---
 interface Props {
-  kind: "autochess" | "sentiview" | "blog-service";
+  kind:
+    | "autochess"
+    | "sentiview"
+    | "blog-service"
+    | "rag-platform"
+    | "ballerina-ft"
+    | "choreo-pipeline"
+    | "clickbait"
+    | "compfigurator"
+    | "ddos"
+    | "diabetes-research"
+    | "fine-tune-pipeline"
+    | "football-fuzzy"
+    | "inventory-ga"
+    | "load-balancing"
+    | "neuro-symbolic"
+    | "translation"
+    | "book-recommender"
+    | "occupancy"
+    | "career-ontology"
+    | "gallery-service";
 }
 
 const { kind } = Astro.props;
@@ -20,7 +40,200 @@ const labels = {
     description:
       "A backend service diagram showing API clients, the FastAPI service, authentication and MongoDB.",
   },
+  "rag-platform": {
+    title: "Adaptive multi-agent retrieval workflow illustration",
+    description:
+      "A question flows through query understanding, retrieval, context optimization and verification before grounded response synthesis, with pgvector and Redis shown as supporting systems.",
+  },
+  "ballerina-ft": {
+    title: "Ballerina code model adaptation illustration",
+    description:
+      "A low-resource Ballerina corpus is prepared and used for LoRA adaptation of a small language model, followed by code completion evaluation.",
+  },
+  "choreo-pipeline": {
+    title: "Choreo documentation AI pipeline illustration",
+    description:
+      "Documentation feeds two connected paths: question-answer dataset generation and fine-tuning, alongside a retrieval-augmented assistant.",
+  },
+  clickbait: {
+    title: "Clickbait detection model comparison illustration",
+    description:
+      "Headline text branches into a supervised CNN path and an exploratory transformer-embedding path.",
+  },
+  compfigurator: {
+    title: "PC component expert system illustration",
+    description:
+      "Workload and budget pass through compatibility rules to produce a PC build with component explanations.",
+  },
+  ddos: {
+    title: "Network flow classification pipeline illustration",
+    description:
+      "Network flow records pass through modular feature transformations before comparison across Logistic Regression, autoencoder and DBSCAN approaches.",
+  },
+  "diabetes-research": {
+    title: "Diabetes risk research pipeline illustration",
+    description:
+      "NHANES laboratory and lifestyle features enter a carefully evaluated LightGBM pipeline with cross-validation, feature comparison and ablation.",
+  },
+  "fine-tune-pipeline": {
+    title: "Repeatable model fine-tuning workflow illustration",
+    description:
+      "A TOML configuration drives fine-tuning, inference and evaluation, with experiment tracking and local or CI execution paths.",
+  },
+  "football-fuzzy": {
+    title: "Football detection confidence refinement illustration",
+    description:
+      "YOLOv8 detections are refined using fuzzy signals for position, shape, nearby players and original confidence.",
+  },
+  "inventory-ga": {
+    title: "Genetic algorithm bin packing illustration",
+    description:
+      "Rectangular items are assigned to storage bins through an evolving search for value and space utilization.",
+  },
+  "load-balancing": {
+    title: "Decentralized load balancing simulation illustration",
+    description:
+      "User and server agents negotiate peer-to-peer connections; no central load-balancing node is shown.",
+  },
+  "neuro-symbolic": {
+    title: "Neuro-symbolic PC configuration illustration",
+    description:
+      "Natural language is interpreted by a local small language model, converted to structured intent and checked against Prolog compatibility rules.",
+  },
+  translation: {
+    title: "English to Sinhala translation pipeline illustration",
+    description:
+      "English text passes through spelling correction, simplification and MBART translation to produce Sinhala text.",
+  },
+  "book-recommender": {
+    title: "Hybrid book recommendation paths illustration",
+    description:
+      "Content, collaborative and PageRank recommendations contribute according to whether a reader is new or has interaction history.",
+  },
+  occupancy: {
+    title: "Room occupancy time-series model pipeline illustration",
+    description:
+      "Environmental sensor readings are split in time order, transformed and evaluated with tree-based models and SHAP interpretation.",
+  },
+  "career-ontology": {
+    title: "AI career domain ontology graph illustration",
+    description:
+      "A knowledge graph connects AI subfields, career roles, skills and learning resources for SPARQL exploration.",
+  },
+  "gallery-service": {
+    title: "Event image gallery and QR sharing illustration",
+    description:
+      "An image upload creates a QR link that opens the image in the event gallery for browsing and sharing.",
+  },
 } as const;
+
+const projectFlow = {
+  "rag-platform": [
+    ["QUERY", "Intent and type"],
+    ["RETRIEVE", "pgvector search"],
+    ["VERIFY", "Context checked"],
+    ["RESPOND", "Grounded answer"],
+  ],
+  "ballerina-ft": [
+    ["BALLERINA DATA", "Low-resource corpus"],
+    ["PREPARE", "Collect and clean"],
+    ["LoRA ADAPTATION", "Small language model"],
+    ["COMPLETION", "Quality evaluation"],
+  ],
+  "choreo-pipeline": [
+    ["CHOREO DOCS", "Markdown source"],
+    ["QA DATA", "Generated pairs"],
+    ["MODEL PATH", "LoRA fine-tuning"],
+    ["RAG PATH", "Grounded assistant"],
+  ],
+  clickbait: [
+    ["HEADLINES", "Tokenized text"],
+    ["CNN MODEL", "Supervised path"],
+    ["EMBEDDINGS", "Transformer space"],
+    ["EXPLORATION", "Clustering in progress"],
+  ],
+  compfigurator: [
+    ["WORKLOAD", "Budget and needs"],
+    ["RULE ENGINE", "Compatibility facts"],
+    ["BUILD", "Ranked alternatives"],
+    ["EXPLANATION", "Why each part fits"],
+  ],
+  ddos: [
+    ["FLOW RECORDS", "Network features"],
+    ["TRANSFORM", "Clean and encode"],
+    ["MODEL STUDY", "Three approaches"],
+    ["CLASSIFY", "Benign or attack"],
+  ],
+  "diabetes-research": [
+    ["NHANES DATA", "Labs and lifestyle"],
+    ["FEATURE STUDY", "Group and ablate"],
+    ["LIGHTGBM", "Stratified CV"],
+    ["EVALUATE", "Tracked in MLflow"],
+  ],
+  "fine-tune-pipeline": [
+    ["TOML CONFIG", "One experiment spec"],
+    ["FINE-TUNE", "LoRA and Unsloth"],
+    ["INFER + EVALUATE", "Separate stages"],
+    ["TRACK", "W&B and CI runs"],
+  ],
+  "football-fuzzy": [
+    ["VIDEO FRAME", "Football footage"],
+    ["YOLOv8", "Candidate detections"],
+    ["FUZZY RULES", "Position and shape"],
+    ["REFINED SCORE", "Confidence blend"],
+  ],
+  "inventory-ga": [
+    ["ITEMS + BINS", "Dimensions and value"],
+    ["POPULATION", "Candidate layouts"],
+    ["EVOLVE", "Selection and mutation"],
+    ["ASSIGNMENTS", "Value and space"],
+  ],
+  "load-balancing": [
+    ["USER AGENTS", "Seek a server"],
+    ["SERVER PEERS", "Share load locally"],
+    ["NEGOTIATE", "No central router"],
+    ["EMERGENCE", "Balance or cascade"],
+  ],
+  "neuro-symbolic": [
+    ["USER REQUEST", "Natural language"],
+    ["LOCAL SLM", "Extract requirements"],
+    ["JANUS-SWI", "Structured handoff"],
+    ["PROLOG", "Check constraints"],
+  ],
+  translation: [
+    ["ENGLISH TEXT", "Original input"],
+    ["CORRECTION", "Guarded spelling"],
+    ["SIMPLIFY", "Reduce syntax load"],
+    ["MBART → SINHALA", "Quantized translation"],
+  ],
+  "book-recommender": [
+    ["READER", "History or cold start"],
+    ["CONTENT", "TF-IDF similarity"],
+    ["COLLABORATIVE", "Reader similarity"],
+    ["HYBRID", "PageRank + routing"],
+  ],
+  occupancy: [
+    ["SENSOR SERIES", "Room conditions"],
+    ["TIME SPLITS", "No future leakage"],
+    ["TREE MODELS", "RF · XGBoost · LGBM"],
+    ["INTERPRET", "SHAP features"],
+  ],
+  "career-ontology": [
+    ["RDF / OWL", "Typed concepts"],
+    ["GRAPHDB", "Knowledge graph"],
+    ["SPARQL", "Competency queries"],
+    ["EXPLORE", "Streamlit + Ollama"],
+  ],
+  "gallery-service": [
+    ["UPLOAD", "Event image"],
+    ["QR LINK", "Generated per image"],
+    ["GALLERY", "Browse or latest"],
+    ["SHARE", "Open on any device"],
+  ],
+} as const;
+
+const flow =
+  kind in projectFlow ? projectFlow[kind as keyof typeof projectFlow] : null;
 ---
 
 <svg
@@ -246,6 +459,482 @@ const labels = {
           Keycloak JWKS JWT
         </text>
         <path d="M676 196h-39v28" class="hero-callout" />
+      </g>
+    )
+  }
+  {
+    flow && (
+      <g class={`hero-project-art hero-project-art--${kind}`}>
+        <path d="M119 252h602" class="hero-project-rule" />
+        <path
+          d="m264 245 8 7-8 7m194-14 8 7-8 7m194-14 8 7-8 7"
+          class="hero-flow-arrow"
+        />
+        {flow.map(([label, note], index) => {
+          const x = 42 + index * 194;
+          return (
+            <g>
+              <path d={`M${x} 241v22`} class="hero-project-tick" />
+              <circle cx={x} cy="252" r="4.5" class="hero-project-node" />
+              <text x={x - 4} y="302" class="hero-label">
+                {label}
+              </text>
+              <text x={x - 4} y="323" class="hero-note">
+                {note}
+              </text>
+            </g>
+          );
+        })}
+        {kind === "load-balancing" && (
+          <g class="hero-flow-arrow">
+            <path d="M340 85 417 56l76 30-22 48-91 4zM340 85l39 53m114-52-22 49M340 85l131 50" />
+            <circle cx="340" cy="85" r="8" class="hero-yellow-dot" />
+            <circle cx="417" cy="56" r="8" class="hero-yellow-dot" />
+            <circle cx="493" cy="86" r="8" class="hero-yellow-dot" />
+            <circle cx="471" cy="134" r="8" class="hero-yellow-dot" />
+            <circle cx="380" cy="138" r="8" class="hero-yellow-dot" />
+          </g>
+        )}
+        {kind === "inventory-ga" && (
+          <g class="hero-panel-line">
+            <path d="M640 65h142v70H640zM650 120h56V76h55v44h11M659 127v8m45-8v8m60-8v8" />
+            <path
+              d="M652 72h21v15h-21zM680 91h21v29h-21z"
+              class="hero-yellow-panel"
+            />
+          </g>
+        )}
+        {kind === "career-ontology" && (
+          <g class="hero-flow-arrow">
+            <path d="M620 67 681 91 748 60M620 67l-5 61 66 27 67-34-19-61M615 128l56-37 14 67M681 91l67 30" />
+            <circle cx="620" cy="67" r="7" class="hero-yellow-dot" />
+            <circle cx="681" cy="91" r="8" class="hero-yellow-dot" />
+            <circle cx="748" cy="60" r="7" class="hero-yellow-dot" />
+            <circle cx="615" cy="128" r="7" class="hero-yellow-dot" />
+            <circle cx="737" cy="158" r="7" class="hero-yellow-dot" />
+          </g>
+        )}
+        {kind === "rag-platform" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              QUERY ROUTING · CONTEXT CHECK
+            </text>
+            <path
+              d="M117 108h120m0 0-55 48m55-48 55 48m-55-48 55-48m-55 48 55-48m0 48h160m0 0-45 42m45-42 45 42m-45-42 45-42"
+              class="hero-project-line"
+            />
+            <circle cx="117" cy="108" r="17" class="hero-project-node" />
+            <circle cx="237" cy="108" r="14" class="hero-project-node" />
+            <circle cx="292" cy="60" r="8" class="hero-project-node" />
+            <circle cx="292" cy="156" r="8" class="hero-project-node" />
+            <circle cx="452" cy="108" r="14" class="hero-project-node" />
+            <circle cx="497" cy="66" r="8" class="hero-project-node" />
+            <circle cx="497" cy="150" r="8" class="hero-project-node" />
+            <path
+              d="M590 72h152v74H590zM606 91h120m-120 15h96m-96 15h108"
+              class="hero-project-line"
+            />
+            <text x="596" y="168" class="hero-note">
+              PGVECTOR + REDIS SUPPORT
+            </text>
+          </g>
+        )}
+        {kind === "ballerina-ft" && (
+          <g class="hero-project-drawing">
+            <text x="67" y="48" class="hero-label">
+              DOMAIN CODE · PARAMETER-EFFICIENT ADAPTATION
+            </text>
+            <path
+              d="M69 72h227v121H69zM90 96h12m-12 0v73m0-73h12m-12 73h12m17-58h121m-121 20h96m-96 20h112"
+              class="hero-project-line"
+            />
+            <path d="M344 132h92m-14-8 14 8-14 8" class="hero-project-line" />
+            <rect
+              x="464"
+              y="82"
+              width="44"
+              height="44"
+              class="hero-project-square"
+            />
+            <rect
+              x="520"
+              y="82"
+              width="44"
+              height="44"
+              class="hero-project-square"
+            />
+            <rect
+              x="464"
+              y="138"
+              width="44"
+              height="44"
+              class="hero-project-square"
+            />
+            <rect
+              x="520"
+              y="138"
+              width="44"
+              height="44"
+              class="hero-project-square"
+            />
+            <path d="M585 132h67m-14-8 14 8-14 8" class="hero-project-line" />
+            <path
+              d="M681 80h82v104h-82zM697 105h50m-50 17h38m-38 17h46"
+              class="hero-project-line"
+            />
+            <circle cx="738" cy="165" r="6" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "choreo-pipeline" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              ONE DOCUMENT CORPUS · THREE CONNECTED WORKSTREAMS
+            </text>
+            <path
+              d="M131 116h152m0 0v-42h128m-128 42v50h128m0-92h92v92h-92m0-92 92 46m-92 46 92-46m0 0h174"
+              class="hero-project-line"
+            />
+            <path
+              d="M77 78h107v76H77zM91 96h78m-78 15h62m-62 15h71"
+              class="hero-project-line"
+            />
+            <circle cx="283" cy="116" r="7" class="hero-project-node" />
+            <circle cx="411" cy="74" r="7" class="hero-project-node" />
+            <circle cx="411" cy="166" r="7" class="hero-project-node" />
+            <rect
+              x="504"
+              y="94"
+              width="40"
+              height="40"
+              class="hero-project-square"
+            />
+            <path d="M554 112h39m-12-8 12 8-12 8" class="hero-project-line" />
+            <path
+              d="M655 82h112v69H655zM672 99h78m-78 15h58"
+              class="hero-project-line"
+            />
+          </g>
+        )}
+        {kind === "clickbait" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              HEADLINE SIGNALS · TWO ANALYSIS PATHS
+            </text>
+            <path
+              d="M68 76h215v103H68zM86 96h174m-174 16h125m-125 16h156m-156 16h92"
+              class="hero-project-line"
+            />
+            <path
+              d="M318 127h72m-14-8 14 8-14 8m0 0v-42h112m-112 42v42h112m0-84 82 42-82 42m82-42h147"
+              class="hero-project-line"
+            />
+            <path
+              d="M501 92h76v70h-76zM514 108h48m-48 16h34m-34 16h45"
+              class="hero-project-line"
+            />
+            <circle cx="588" cy="127" r="6" class="hero-project-node" />
+            <path
+              d="M661 88h98v78h-98zM675 150l17-23 17 12 18-29 19 20"
+              class="hero-project-line"
+            />
+          </g>
+        )}
+        {kind === "compfigurator" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              COMPONENT CONSTRAINTS · EXPLAINABLE SELECTION
+            </text>
+            <path
+              d="M72 88h142v91H72zM88 107h110m-110 18h83m-83 18h96"
+              class="hero-project-line"
+            />
+            <path
+              d="M214 133h48m-13-8 13 8-13 8m0 0h61m-12-8 12 8-12 8m0 0h61m-12-8 12 8-12 8m0 0h61m-12-8 12 8-12 8m0 0h61m-12-8 12 8-12 8"
+              class="hero-project-line"
+            />
+            <rect
+              x="276"
+              y="101"
+              width="35"
+              height="35"
+              class="hero-project-square"
+            />
+            <rect
+              x="337"
+              y="101"
+              width="35"
+              height="35"
+              class="hero-project-square"
+            />
+            <rect
+              x="398"
+              y="101"
+              width="35"
+              height="35"
+              class="hero-project-square"
+            />
+            <rect
+              x="459"
+              y="101"
+              width="35"
+              height="35"
+              class="hero-project-square"
+            />
+            <path
+              d="M559 78h196v102H559zM580 99h155m-155 18h132m-132 18h145m-145 18h98"
+              class="hero-project-line"
+            />
+            <circle cx="720" cy="164" r="6" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "ddos" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              FLOW FEATURES · MODEL COMPARISON
+            </text>
+            <path
+              d="M74 83h135v94H74zM92 101h99m-99 16h66m-66 16h83m-83 16h51"
+              class="hero-project-line"
+            />
+            <path
+              d="M209 130h75m-13-8 13 8-13 8m0 0h82m-13-8 13 8-13 8m0 0h82m-13-8 13 8-13 8"
+              class="hero-project-line"
+            />
+            <rect
+              x="284"
+              y="94"
+              width="54"
+              height="73"
+              class="hero-project-square"
+            />
+            <rect
+              x="366"
+              y="94"
+              width="54"
+              height="73"
+              class="hero-project-square"
+            />
+            <rect
+              x="448"
+              y="94"
+              width="54"
+              height="73"
+              class="hero-project-square"
+            />
+            <path
+              d="M554 83h193v94H554zM575 151l32-29 28 13 35-39 28 31 30-20"
+              class="hero-project-line"
+            />
+            <circle cx="670" cy="96" r="5" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "diabetes-research" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              LAB + LIFESTYLE FEATURES · THREE-CLASS STUDY
+            </text>
+            <path
+              d="M83 80h196v99H83zM106 161V96m0 65h148"
+              class="hero-project-line"
+            />
+            <circle cx="135" cy="141" r="5" class="hero-project-node" />
+            <circle cx="159" cy="119" r="4" class="hero-project-node" />
+            <circle cx="186" cy="132" r="5" class="hero-project-node" />
+            <circle cx="218" cy="104" r="5" class="hero-project-node" />
+            <circle cx="242" cy="119" r="4" class="hero-project-node" />
+            <path d="M279 129h93m-13-8 13 8-13 8" class="hero-project-line" />
+            <path
+              d="M398 80h130v100H398zM417 99h91m-91 18h64m-64 18h80m-80 18h52"
+              class="hero-project-line"
+            />
+            <path
+              d="M573 80h179v100H573zM591 157l35-21 26 8 35-40 42 17"
+              class="hero-project-line"
+            />
+            <circle cx="687" cy="104" r="5" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "fine-tune-pipeline" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              CONFIG-DRIVEN TRAINING · SEPARATE EVALUATION
+            </text>
+            <path
+              d="M71 74h174v110H71zM88 96h70m-70 18h111m-111 18h88m-88 18h58"
+              class="hero-project-line"
+            />
+            <path
+              d="M245 130h75m-13-8 13 8-13 8m0 0h77m-13-8 13 8-13 8m0 0h78m-13-8 13 8-13 8m0 0h91"
+              class="hero-project-line"
+            />
+            <circle cx="357" cy="130" r="18" class="hero-project-node" />
+            <circle cx="460" cy="130" r="18" class="hero-project-node" />
+            <circle cx="564" cy="130" r="18" class="hero-project-node" />
+            <path
+              d="M637 78h131v100H637zM655 99h95m-95 18h74m-74 18h86m-86 18h51"
+              class="hero-project-line"
+            />
+          </g>
+        )}
+        {kind === "football-fuzzy" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              DETECTION CONTEXT · FUZZY CONFIDENCE REFINEMENT
+            </text>
+            <path
+              d="M76 75h222v109H76zM187 75v109m-111-54h222"
+              class="hero-project-line"
+            />
+            <path d="M190 111h28v27h-28z" class="hero-project-square" />
+            <circle cx="204" cy="124" r="5" class="hero-project-node" />
+            <path
+              d="M330 130h77m-13-8 13 8-13 8m0 0h102"
+              class="hero-project-line"
+            />
+            <path
+              d="M509 83h111v87H509zM526 101h75m-75 17h50m-50 17h68"
+              class="hero-project-line"
+            />
+            <path
+              d="M648 83h120v87H648zM661 151l27-22 22 11 36-37"
+              class="hero-project-line"
+            />
+            <circle cx="719" cy="103" r="5" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "neuro-symbolic" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              LANGUAGE UNDERSTANDING · FORMAL REASONING
+            </text>
+            <path
+              d="M84 83h152v94H84zM101 101h117m-117 17h84m-84 17h101m-101 17h71"
+              class="hero-project-line"
+            />
+            <path
+              d="M236 130h65m-13-8 13 8-13 8m0 0h73m-13-8 13 8-13 8"
+              class="hero-project-line"
+            />
+            <circle cx="337" cy="130" r="6" class="hero-project-node" />
+            <path
+              d="M369 130l61-40m-61 40 61 0m-61 0 61 40"
+              class="hero-project-line"
+            />
+            <circle cx="430" cy="90" r="8" class="hero-project-node" />
+            <circle cx="430" cy="130" r="8" class="hero-project-node" />
+            <circle cx="430" cy="170" r="8" class="hero-project-node" />
+            <path
+              d="M438 130h73m-13-8 13 8-13 8m0 0h38"
+              class="hero-project-line"
+            />
+            <path
+              d="M549 81h207v100H549zM567 102h166m-166 18h122m-122 18h151m-151 18h91"
+              class="hero-project-line"
+            />
+          </g>
+        )}
+        {kind === "translation" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              ENGLISH INPUT · SINHALA OUTPUT
+            </text>
+            <path
+              d="M77 81h185v88H77zM94 101h146m-146 17h113m-113 17h128m-128 17h76"
+              class="hero-project-line"
+            />
+            <path
+              d="M262 125h66m-13-8 13 8-13 8m0 0h68m-13-8 13 8-13 8m0 0h75m-13-8 13 8-13 8"
+              class="hero-project-line"
+            />
+            <path
+              d="M361 89h44v72h-44zM431 89h44v72h-44zM506 89h44v72h-44z"
+              class="hero-project-square"
+            />
+            <path
+              d="M575 81h192v88H575zM593 101h148m-148 17h117m-117 17h136m-136 17h89"
+              class="hero-project-line"
+            />
+            <path d="M590 75v-8m8 8v-8m8 8v-8" class="hero-project-line" />
+          </g>
+        )}
+        {kind === "book-recommender" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              ITEM FEATURES · USER HISTORY · GRAPH SIGNAL
+            </text>
+            <circle cx="129" cy="127" r="31" class="hero-project-node" />
+            <path d="M129 111v32m-12-16h24" class="hero-project-line" />
+            <path
+              d="M160 127h84m-13-8 13 8-13 8m0 0 61-49m-61 49 61 49m0-98h88m-88 98h88m0-98 52 49-52 49m52-49h125"
+              class="hero-project-line"
+            />
+            <path
+              d="M292 88h88v78h-88zM307 105h58m-58 17h41m-41 17h51"
+              class="hero-project-line"
+            />
+            <circle cx="429" cy="78" r="7" class="hero-project-node" />
+            <circle cx="429" cy="176" r="7" class="hero-project-node" />
+            <path
+              d="M556 87h181v80H556zM575 145l35-30 26 18 33-35 48 29"
+              class="hero-project-line"
+            />
+          </g>
+        )}
+        {kind === "occupancy" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              ORDERED SENSOR READINGS · TIME-BASED VALIDATION
+            </text>
+            <path
+              d="M75 79h236v101H75zM95 159v-65m0 65h196"
+              class="hero-project-line"
+            />
+            <path
+              d="M97 145l25-4 21-19 21 12 22-35 23 17 22 7 22-29 35 18"
+              class="hero-project-line"
+            />
+            <circle cx="208" cy="99" r="5" class="hero-project-node" />
+            <path
+              d="M355 80v98m61-98v98m61-98v98m61-98v98"
+              class="hero-project-line"
+            />
+            <path
+              d="M345 103h141m-141 29h141m-141 29h141"
+              class="hero-project-line"
+            />
+            <path
+              d="M578 80h185v100H578zM597 159l31-22 27 10 29-41 29 26 32-19"
+              class="hero-project-line"
+            />
+            <circle cx="684" cy="106" r="5" class="hero-project-node" />
+          </g>
+        )}
+        {kind === "gallery-service" && (
+          <g class="hero-project-drawing">
+            <text x="68" y="48" class="hero-label">
+              EVENT IMAGE · SCAN · OPEN
+            </text>
+            <path
+              d="M82 78h172v103H82zM97 93h141v73H97z"
+              class="hero-project-line"
+            />
+            <path
+              d="m98 157 39-39 26 24 22-19 53 44"
+              class="hero-project-line"
+            />
+            <circle cx="208" cy="108" r="7" class="hero-project-node" />
+            <path d="M254 129h94m-13-8 13 8-13 8" class="hero-project-line" />
+            <path
+              d="M375 86h86v86h-86zM387 98h15v15h-15zm24 0h13v13h-13zm24 0h14v15h-14zm-48 24h14v14h-14zm23 0h13v14h-13zm25 0h14v14h-14zm-48 24h15v14h-15zm25 0h13v14h-13zm24 0h14v14h-14z"
+              class="hero-project-line"
+            />
+            <path d="M461 129h96m-13-8 13 8-13 8" class="hero-project-line" />
+            <path
+              d="M580 78h181v103H580zM599 99h145m-145 18h105m-105 18h132m-132 18h88"
+              class="hero-project-line"
+            />
+          </g>
+        )}
       </g>
     )
   }

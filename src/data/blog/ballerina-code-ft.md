@@ -4,6 +4,8 @@ description: "Research and experimentation on fine-tuning Small Language Models 
 pubDatetime: 2025-04-02
 tags: ["Fine-Tuning", "Code Generation", "LLM", "LoRA", "Ballerina", "Python", "Jupyter"]
 featured: false
+heroSummary: "An exploration of adapting small language models to Ballerina code using a low-resource corpus and parameter-efficient fine-tuning."
+projectVisual: "ballerina-ft"
 githubURL: "https://github.com/rtweera/code-ft"
 ---
 

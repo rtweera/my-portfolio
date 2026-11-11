@@ -1,5 +1,25 @@
 ---
-type VisualKind = "autochess" | "sentiview" | "blog-service";
+type VisualKind =
+  | "autochess"
+  | "sentiview"
+  | "blog-service"
+  | "rag-platform"
+  | "ballerina-ft"
+  | "choreo-pipeline"
+  | "clickbait"
+  | "compfigurator"
+  | "ddos"
+  | "diabetes-research"
+  | "fine-tune-pipeline"
+  | "football-fuzzy"
+  | "inventory-ga"
+  | "load-balancing"
+  | "neuro-symbolic"
+  | "translation"
+  | "book-recommender"
+  | "occupancy"
+  | "career-ontology"
+  | "gallery-service";
 import SectionHeading from "@/components/SectionHeading.astro";
 
 interface Props {
@@ -121,13 +141,535 @@ const architecture = {
     caption:
       "Illustrative service map based on the documented gateway and direct-bearer authentication modes.",
   },
+  "rag-platform": {
+    title: "Retrieval workflow",
+    intro:
+      "Specialized LangGraph nodes route each query through retrieval, context refinement, verification and answer synthesis.",
+    description:
+      "RAG workflow from query understanding to pgvector retrieval, context optimization, verification and response synthesis, supported by Redis caches.",
+    steps: [
+      {
+        title: "Understand",
+        detail: "Classify and rewrite the query.",
+        icon: "client",
+      },
+      {
+        title: "Retrieve",
+        detail: "Search relevant chunks in pgvector.",
+        icon: "database",
+      },
+      { title: "Optimize", detail: "Rerank and compress context.", icon: "ai" },
+      {
+        title: "Verify",
+        detail: "Cross-check context consistency.",
+        icon: "identity",
+      },
+      {
+        title: "Synthesize",
+        detail: "Generate a grounded response.",
+        icon: "engine",
+      },
+    ],
+    caption:
+      "The agent graph is explicit and inspectable; Redis supports embedding and query-result caching.",
+  },
+  "ballerina-ft": {
+    title: "Code model adaptation",
+    intro:
+      "The research workspace prepares a scarce Ballerina corpus, applies parameter-efficient adaptation and evaluates generated completions.",
+    description:
+      "Ballerina code completion process from corpus preparation through LoRA fine-tuning of a small model to generation evaluation.",
+    steps: [
+      {
+        title: "Collect",
+        detail: "Gather code and documentation sources.",
+        icon: "document",
+      },
+      {
+        title: "Prepare",
+        detail: "Process the low-resource corpus.",
+        icon: "database",
+      },
+      {
+        title: "Adapt",
+        detail: "Train with parameter-efficient LoRA.",
+        icon: "ai",
+      },
+      {
+        title: "Evaluate",
+        detail: "Review generated completions.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "A conceptual map of the documented research workflow; no model-quality score is implied.",
+  },
+  "choreo-pipeline": {
+    title: "Documentation-to-assistant pipeline",
+    intro:
+      "Three connected workstreams use one documentation corpus for QA generation, Qwen fine-tuning and a separate retrieval assistant.",
+    description:
+      "Choreo documentation fans into a QA dataset and fine-tuning path plus a parallel embeddings, ChromaDB and retrieval path.",
+    steps: [
+      {
+        title: "Source docs",
+        detail: "Choreo Markdown documentation.",
+        icon: "document",
+      },
+      {
+        title: "Generate data",
+        detail: "LLM strategies produce QA pairs.",
+        icon: "ai",
+      },
+      {
+        title: "Fine-tune",
+        detail: "Unsloth and Qwen with LoRA.",
+        icon: "engine",
+      },
+      {
+        title: "Evaluate",
+        detail: "Compare answers using RAGAS.",
+        icon: "dashboard",
+      },
+      {
+        title: "Parallel RAG",
+        detail: "Embeddings, ChromaDB, dialogue.",
+        icon: "database",
+      },
+    ],
+    caption:
+      "Fine-tuning and RAG are complementary branches over the same documentation, not one sequential runtime path.",
+  },
+  clickbait: {
+    title: "Detection approaches",
+    intro:
+      "A labeled headline set trains the main CNN classifier while a transformer-embedding route remains exploratory.",
+    description:
+      "Two clickbait approaches: supervised headline tokenization and CNN classification, and an in-progress transformer embedding and clustering path.",
+    steps: [
+      {
+        title: "Headlines",
+        detail: "JSONL training and validation data.",
+        icon: "document",
+      },
+      {
+        title: "Tokenize",
+        detail: "Represent text for the model.",
+        icon: "api",
+      },
+      { title: "CNN", detail: "Supervised classification path.", icon: "ai" },
+      {
+        title: "Embeddings",
+        detail: "Unsupervised path in progress.",
+        icon: "database",
+      },
+    ],
+    caption:
+      "The supervised CNN is the main deliverable; clustering and its evaluation remain exploratory.",
+  },
+  compfigurator: {
+    title: "Explainable build selection",
+    intro:
+      "An ordered chain of hard compatibility checks allocates the budget and returns a build with human-readable reasons.",
+    description:
+      "PC expert system flow from workload and budget through CPU, motherboard, GPU, RAM, storage and monitor constraints to explained recommendations.",
+    steps: [
+      {
+        title: "Workload + budget",
+        detail: "Choose one of 11 workload types.",
+        icon: "client",
+      },
+      {
+        title: "Component rules",
+        detail: "Apply compatibility and budget facts.",
+        icon: "identity",
+      },
+      {
+        title: "Rank builds",
+        detail: "Score valid configurations.",
+        icon: "engine",
+      },
+      {
+        title: "Explain",
+        detail: "Show why parts were selected.",
+        icon: "document",
+      },
+    ],
+    caption:
+      "The recommendation is rule-based: each chosen component constrains the valid options that follow.",
+  },
+  ddos: {
+    title: "Network flow ML pipeline",
+    intro:
+      "Reusable sklearn-compatible transformers prepare flow features before three supervised or unsupervised detection approaches are compared.",
+    description:
+      "DDoS flow pipeline with feature dropping, IP splitting, numeric scaling, categorical encoding and imputation before Logistic Regression, autoencoder or DBSCAN.",
+    steps: [
+      {
+        title: "Flow data",
+        detail: "Packet-derived network features.",
+        icon: "database",
+      },
+      {
+        title: "Transform",
+        detail: "Split, encode, scale and impute.",
+        icon: "api",
+      },
+      {
+        title: "Compare",
+        detail: "Logistic Regression, AE, DBSCAN.",
+        icon: "ai",
+      },
+      {
+        title: "Classify",
+        detail: "Benign traffic or attack flows.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "The preprocessing pipeline is reusable across the models and can be serialized with an inference model.",
+  },
+  "diabetes-research": {
+    title: "Research and evaluation pipeline",
+    intro:
+      "The study compares laboratory and lifestyle feature groups under a controlled LightGBM training and evaluation workflow.",
+    description:
+      "NHANES lab and lifestyle data enters training-only resampling and stratified cross-validation before LightGBM evaluation and feature ablation tracked in MLflow.",
+    steps: [
+      {
+        title: "NHANES",
+        detail: "Laboratory and lifestyle data.",
+        icon: "database",
+      },
+      {
+        title: "Training folds",
+        detail: "SMOTE applied within folds.",
+        icon: "api",
+      },
+      { title: "Tune", detail: "Optuna with stratified CV.", icon: "ai" },
+      {
+        title: "Study",
+        detail: "Feature groups and ablation.",
+        icon: "dashboard",
+      },
+      {
+        title: "Track",
+        detail: "Runs and artifacts in MLflow.",
+        icon: "document",
+      },
+    ],
+    caption:
+      "The held-out test data retains its natural distribution; the illustration shows methodology, not clinical use.",
+  },
+  "fine-tune-pipeline": {
+    title: "Repeatable fine-tuning workflow",
+    intro:
+      "One configuration drives distinct training, inference and evaluation steps across local, GitHub Actions or Jenkins environments.",
+    description:
+      "Fine-tuning framework from TOML configuration to LoRA training, separate inference and evaluation, W&B tracking and local or CI execution.",
+    steps: [
+      {
+        title: "Configure",
+        detail: "TOML experiment settings.",
+        icon: "document",
+      },
+      { title: "Fine-tune", detail: "LoRA training with Unsloth.", icon: "ai" },
+      {
+        title: "Infer",
+        detail: "Run model inference separately.",
+        icon: "engine",
+      },
+      {
+        title: "Evaluate",
+        detail: "Score runs and log to W&B.",
+        icon: "dashboard",
+      },
+      {
+        title: "Execute",
+        detail: "Local, GitHub Actions or Jenkins.",
+        icon: "api",
+      },
+    ],
+    caption:
+      "Model support and training settings are configuration-driven; CI execution uses environment variables for secrets.",
+  },
+  "football-fuzzy": {
+    title: "Detection confidence refinement",
+    intro:
+      "A fuzzy inference layer adds pitch-aware context to candidate ball detections returned by YOLOv8.",
+    description:
+      "Football frame analysis from YOLOv8 bounding boxes through position, aspect ratio, player proximity and model confidence to a blended score.",
+    steps: [
+      {
+        title: "Video frame",
+        detail: "Football match footage.",
+        icon: "document",
+      },
+      { title: "YOLOv8", detail: "Detect candidate objects.", icon: "ai" },
+      {
+        title: "Fuzzy inputs",
+        detail: "Position, shape, player scale.",
+        icon: "identity",
+      },
+      {
+        title: "Refine",
+        detail: "Blend fuzzy and YOLO scores.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "The accompanying visual compares raw and adjusted detections; the fuzzy rule system is exploratory and needs further calibration.",
+  },
+  "inventory-ga": {
+    title: "Genetic search for bin packing",
+    intro:
+      "A Java optimizer evolves item-to-bin assignments against a fitness function balancing stored value and space use.",
+    description:
+      "2D inventory bin packing workflow from rectangular item and bin dimensions through genetic search to assignment output returned over a Python bridge.",
+    steps: [
+      {
+        title: "Items + bins",
+        detail: "Dimensions, value and quantity.",
+        icon: "database",
+      },
+      {
+        title: "Candidates",
+        detail: "Population of assignments.",
+        icon: "engine",
+      },
+      {
+        title: "Evolve",
+        detail: "Selection, crossover, mutation.",
+        icon: "ai",
+      },
+      {
+        title: "Return",
+        detail: "JSON mapping via Python bridge.",
+        icon: "api",
+      },
+    ],
+    caption:
+      "The algorithm searches for good solutions to the documented 2D packing objective; it does not guarantee an optimum.",
+  },
+  "load-balancing": {
+    title: "Peer negotiation simulation",
+    intro:
+      "Local server-to-server negotiation shifts users between peers, allowing balanced load and failure cascades to emerge from agent rules.",
+    description:
+      "Decentralized network simulation with user agents, capacity-limited server agents and peer-to-peer load negotiation without a central coordinator.",
+    steps: [
+      {
+        title: "User agents",
+        detail: "Connect, retry and respawn.",
+        icon: "client",
+      },
+      {
+        title: "Server agents",
+        detail: "Accept connections to capacity.",
+        icon: "database",
+      },
+      {
+        title: "Peer messages",
+        detail: "Request or delegate users.",
+        icon: "network",
+      },
+      {
+        title: "Emergent state",
+        detail: "Rebalance, cascade or recover.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "No agent has a global view; the Pygame butterfly trigger perturbs a connection to reveal system response.",
+  },
+  "neuro-symbolic": {
+    title: "Natural language to formal constraints",
+    intro:
+      "Language understanding and compatibility reasoning are kept separate: an SLM extracts intent, then Prolog checks the hardware rules.",
+    description:
+      "PC assistant flow from natural-language request through local SLM and structured intent via Janus-SWI to Prolog compatibility inference.",
+    steps: [
+      {
+        title: "Request",
+        detail: "Budget, workload and preferences.",
+        icon: "client",
+      },
+      {
+        title: "SLM",
+        detail: "Interpret natural language locally.",
+        icon: "ai",
+      },
+      {
+        title: "Janus-SWI",
+        detail: "Bridge Python to SWI-Prolog.",
+        icon: "api",
+      },
+      {
+        title: "Prolog",
+        detail: "Infer only valid configurations.",
+        icon: "identity",
+      },
+      {
+        title: "Build",
+        detail: "Return a compatible selection.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "The model structures intent; formal compatibility decisions are delegated to the Prolog knowledge base.",
+  },
+  translation: {
+    title: "Three-stage translation workflow",
+    intro:
+      "The translation process reduces input noise and syntactic complexity before a quantized multilingual model generates Sinhala text.",
+    description:
+      "English-to-Sinhala pipeline with guarded statistical spelling correction, LLM text simplification and quantized MBART translation.",
+    steps: [
+      {
+        title: "English input",
+        detail: "Source text for translation.",
+        icon: "document",
+      },
+      {
+        title: "Correct",
+        detail: "Statistical spelling with guardrails.",
+        icon: "api",
+      },
+      { title: "Simplify", detail: "LLM rewrites complex syntax.", icon: "ai" },
+      {
+        title: "Translate",
+        detail: "Quantized MBART to Sinhala.",
+        icon: "engine",
+      },
+    ],
+    caption:
+      "Corpus-generation utilities use Gemini; the illustrated runtime stages reflect the documented translation interface.",
+  },
+  "book-recommender": {
+    title: "Hybrid recommendation routes",
+    intro:
+      "New readers and readers with history use different recommendation paths, combining item metadata, user similarity and graph structure.",
+    description:
+      "Book recommendation paths from cold-start content and popularity to warm-user collaborative filtering, personalized PageRank and hybrid ranking.",
+    steps: [
+      {
+        title: "Reader state",
+        detail: "Cold start or interaction history.",
+        icon: "client",
+      },
+      {
+        title: "Content",
+        detail: "TF-IDF over book metadata.",
+        icon: "document",
+      },
+      {
+        title: "Collaborative",
+        detail: "Similarity over ratings.",
+        icon: "network",
+      },
+      {
+        title: "Graph ranking",
+        detail: "Personalized PageRank signal.",
+        icon: "database",
+      },
+      {
+        title: "Hybrid score",
+        detail: "Route and combine signals.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "Collaborative signals require interaction history; cold-start users rely on content and global popularity signals.",
+  },
+  occupancy: {
+    title: "Time-aware model evaluation",
+    intro:
+      "Chronological splits preserve the sequence of environmental readings while model families are compared under the same validation approach.",
+    description:
+      "Occupancy prediction workflow from temperature, humidity, CO2 and light readings through chronological folds, feature engineering and tree-model evaluation with SHAP.",
+    steps: [
+      {
+        title: "Sensors",
+        detail: "Temperature, humidity, CO2, light.",
+        icon: "sensor",
+      },
+      {
+        title: "Time folds",
+        detail: "TimeSeriesSplit; no shuffling.",
+        icon: "database",
+      },
+      {
+        title: "Features",
+        detail: "Temporal and change signals.",
+        icon: "api",
+      },
+      { title: "Models", detail: "RF, XGBoost and LightGBM.", icon: "ai" },
+      {
+        title: "Interpret",
+        detail: "SHAP feature contributions.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "SMOTE is applied only inside training folds so validation data remains separate.",
+  },
+  "career-ontology": {
+    title: "Ontology and question interface",
+    intro:
+      "A formal AI-domain graph supports precise SPARQL questions and an optional natural-language interface backed by a local model.",
+    description:
+      "AI career ontology connects subfields, roles, skills, learning resources and prerequisite relations in RDF and GraphDB, queried using SPARQL or Ollama.",
+    steps: [
+      {
+        title: "RDF / OWL",
+        detail: "Typed domain concepts and relations.",
+        icon: "graph",
+      },
+      {
+        title: "GraphDB",
+        detail: "Load the ontology graph.",
+        icon: "database",
+      },
+      { title: "SPARQL", detail: "Run competency questions.", icon: "api" },
+      { title: "Explore", detail: "Streamlit and local Ollama.", icon: "ai" },
+    ],
+    caption:
+      "The language model translates questions to SPARQL and interprets results from the defined graph.",
+  },
+  "gallery-service": {
+    title: "Upload-to-share service flow",
+    intro:
+      "Each uploaded event image receives a QR code that opens the image directly, while the web interface offers gallery and latest-image views.",
+    description:
+      "Event image service from FastAPI upload through QR generation and gallery browsing to direct image sharing and download.",
+    steps: [
+      { title: "Upload", detail: "POST image to FastAPI.", icon: "document" },
+      { title: "Generate", detail: "Create a QR link per image.", icon: "api" },
+      {
+        title: "Browse",
+        detail: "Gallery or latest image view.",
+        icon: "dashboard",
+      },
+      {
+        title: "Share",
+        detail: "Open or download on a device.",
+        icon: "client",
+      },
+    ],
+    caption:
+      "The QR destination uses DEPLOYED_URL so the same application can target its local or deployed address.",
+  },
 } as const;
 
 const detail = architecture[kind];
 ---
 
 <section
-  class:list={["case-architecture", `case-architecture--${kind}`]}
+  class:list={[
+    "case-architecture",
+    `case-architecture--${kind}`,
+    `case-architecture--steps-${detail.steps.length}`,
+  ]}
   aria-labelledby="project-architecture-title"
 >
   <div class="case-architecture-heading">
@@ -252,6 +794,39 @@ const detail = architecture[kind];
                       <path d="M24 4 39 10v12c0 10-6 17-15 22C15 39 9 32 9 22V10z" />
                       <circle cx="24" cy="19" r="5" class="flow-icon-yellow" />
                       <path d="M15 33c1-5 4-8 9-8s8 3 9 8" />
+                    </g>
+                  )}
+                  {step.icon === "document" && (
+                    <g class="flow-icon-chip">
+                      <path d="M11 5h18l8 8v30H11zM29 5v9h8M17 21h14m-14 7h14m-14 7h9" />
+                      <path d="M17 21h14" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "network" && (
+                    <g class="flow-icon-chip">
+                      <path d="m12 12 12 12 13-12M24 24l-12 12m12-12 13 12" />
+                      <circle cx="12" cy="12" r="5" class="flow-icon-yellow" />
+                      <circle cx="37" cy="12" r="5" />
+                      <circle cx="24" cy="24" r="6" />
+                      <circle cx="12" cy="36" r="5" />
+                      <circle cx="37" cy="36" r="5" />
+                    </g>
+                  )}
+                  {step.icon === "sensor" && (
+                    <g class="flow-icon-chip">
+                      <path d="M24 37V22m0 0c-4 0-7-3-7-7s3-7 7-7 7 3 7 7-3 7-7 7zm-13 4a18 18 0 0 1 0-16m26 0a18 18 0 0 1 0 16M8 33a24 24 0 0 1 0-24m32 0a24 24 0 0 1 0 24M17 42h14" />
+                      <circle cx="24" cy="15" r="3" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "graph" && (
+                    <g class="flow-icon-chip">
+                      <path d="M10 12 25 8l13 12-7 18-19-4zM10 12l9 12m6-16-6 16 12 12M19 24l19-4" />
+                      <circle cx="10" cy="12" r="4" class="flow-icon-yellow" />
+                      <circle cx="25" cy="8" r="4" />
+                      <circle cx="38" cy="20" r="4" />
+                      <circle cx="31" cy="38" r="4" />
+                      <circle cx="12" cy="34" r="4" />
+                      <circle cx="19" cy="24" r="4" />
                     </g>
                   )}
                 </svg>

@@ -4,6 +4,8 @@ description: "A genetic algorithm solving the 2D bin packing problem for invento
 pubDatetime: 2025-10-20
 tags: ["Genetic Algorithm", "Optimization", "Java", "Python", "AI"]
 featured: false
+heroSummary: "A Java genetic algorithm searches 2D item-to-bin assignments for a balance of stored value and space use."
+projectVisual: "inventory-ga"
 githubURL: "https://github.com/rtweera/GA-Inventory-Optimization"
 ---
 

@@ -4,6 +4,8 @@ description: "A computer vision project combining YOLOv8 object detection with f
 pubDatetime: 2024-12-28
 tags: ["Computer Vision", "YOLOv8", "Fuzzy Logic", "OpenCV", "Python"]
 featured: false
+heroSummary: "Fuzzy domain rules refine YOLOv8 football detections using position, shape, nearby players and model confidence."
+projectVisual: "football-fuzzy"
 githubURL: "https://github.com/rtweera/fuzzy-logic-project"
 ---
 

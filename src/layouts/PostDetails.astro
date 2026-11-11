@@ -137,7 +137,9 @@ const nextPost =
                 ? "Schematic illustration of the board and under-board XY electromagnet mechanism; not a project photograph."
                 : projectVisual === "sentiview"
                   ? "Illustrative workflow based on the documented email analytics service."
-                  : "Illustrative service map based on the documented backend structure."}
+                  : projectVisual === "blog-service"
+                    ? "Illustrative service map based on the documented backend structure."
+                    : "Original technical illustration based on the project write-up; not a project screenshot."}
             </figcaption>
           </figure>
         )

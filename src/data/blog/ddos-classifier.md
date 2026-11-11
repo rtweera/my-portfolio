@@ -4,6 +4,8 @@ description: "A machine learning project for classifying DDoS attack traffic, co
 pubDatetime: 2025-04-07
 tags: ["Machine Learning", "Cybersecurity", "PyTorch", "scikit-learn", "Python"]
 featured: false
+heroSummary: "A reusable flow-data preprocessing pipeline supports supervised and unsupervised approaches to DDoS traffic classification."
+projectVisual: "ddos"
 githubURL: "https://github.com/rtweera/ddos-classifier"
 ---
 

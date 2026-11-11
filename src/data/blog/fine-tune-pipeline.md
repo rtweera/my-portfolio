@@ -4,6 +4,8 @@ description: "A team-built, production-oriented fine-tuning framework covering L
 pubDatetime: 2025-06-25
 tags: ["LLM", "Fine-Tuning", "LoRA", "Unsloth", "MLOps", "CI/CD", "Python", "Hugging Face"]
 featured: true
+heroSummary: "A TOML-configured framework connects repeatable LoRA training, inference and evaluation to local and CI workflows."
+projectVisual: "fine-tune-pipeline"
 githubURL: "https://github.com/Fine-Tuning-Team/Fine-Tune-Pipeline"
 liveURL: "https://fine-tuning-team.github.io/Fine-Tune-Pipeline/"
 ---

@@ -4,6 +4,8 @@ description: "A full AI pipeline built around WSO2 Choreo documentation — gene
 pubDatetime: 2025-06-10
 tags: ["RAG", "Fine-Tuning", "LangChain", "Gemini", "Qwen", "LoRA", "Unsloth", "ChromaDB", "MLOps", "Python"]
 featured: false
+heroSummary: "A connected workflow turns Choreo documentation into QA datasets, fine-tuned models and a retrieval-grounded assistant."
+projectVisual: "choreo-pipeline"
 githubURL: "https://github.com/rtweera/new-choreo-qa-gen"
 ---
 

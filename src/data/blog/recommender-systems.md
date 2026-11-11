@@ -4,6 +4,8 @@ description: "A book recommendation system combining content-based filtering (TF
 pubDatetime: 2026-02-23
 tags: ["Recommender Systems", "Machine Learning", "NetworkX", "scikit-learn", "Python"]
 featured: false
+heroSummary: "A hybrid book recommender routes new and established readers through content, collaborative and graph-based signals."
+projectVisual: "book-recommender"
 githubURL: "https://github.com/rtweera/recommender-systems-project"
 ---
 

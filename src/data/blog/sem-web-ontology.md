@@ -4,6 +4,8 @@ description: "An OWL/RDF ontology modeling the AI domain — subfields, career r
 pubDatetime: 2026-02-22
 tags: ["Semantic Web", "OWL", "RDF", "SPARQL", "GraphDB", "Streamlit", "Knowledge Graphs", "Python"]
 featured: false
+heroSummary: "An OWL/RDF knowledge graph links AI concepts, careers, skills and learning resources for SPARQL exploration."
+projectVisual: "career-ontology"
 githubURL: "https://github.com/rtweera/sem-web-ontology-project"
 ---
 

@@ -4,6 +4,8 @@ description: "A rule-based expert system that recommends complete PC builds from
 pubDatetime: 2024-12-05
 tags: ["Expert Systems", "AI", "Experta", "Streamlit", "Python", "Knowledge Engineering"]
 featured: false
+heroSummary: "An explainable rule engine turns a workload and budget into compatible PC component recommendations."
+projectVisual: "compfigurator"
 githubURL: "https://github.com/rtweera/compfigurator"
 ---
 
