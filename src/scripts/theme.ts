@@ -32,7 +32,11 @@ function setPreference(): void {
 function reflectPreference(): void {
   document.firstElementChild?.setAttribute("data-theme", themeValue);
 
-  document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
+  const themeButton = document.querySelector<HTMLButtonElement>("#theme-btn");
+  themeButton?.setAttribute(
+    "aria-label",
+    themeValue === DARK ? "Switch to light theme" : "Switch to dark theme"
+  );
 
   // Get a reference to the body element
   const body = document.body;
@@ -108,7 +112,8 @@ document.addEventListener("astro:before-swap", event => {
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", ({ matches: isDark }) => {
+    if (localStorage.getItem(THEME)) return;
     themeValue = isDark ? DARK : LIGHT;
     window.theme?.setTheme(themeValue);
-    setPreference();
+    reflectPreference();
   });

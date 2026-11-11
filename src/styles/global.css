@@ -1,31 +1,51 @@
 @import "tailwindcss";
 @import "./typography.css";
+@import "./site-shell.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 :root,
 html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  /* --border: #ece9e9;  Original theme color */
-  --border: #919090;
+  color-scheme: light;
+  --page: #f4f1eb;
+  --surface: #fbfaf7;
+  --foreground: #171817;
+  --foreground-muted: #66645f;
+  --signal: #f2ef00;
+  --signal-hover: #dbd800;
+  --signal-ink: #171817;
+  --accent: #171817;
+  --muted: #e7e3db;
+  --border: #aaa69d;
+  --border-soft: #d7d3ca;
+  --type-display: "Manrope", "Arial", sans-serif;
+  --type-body: "Inter", "Segoe UI", Arial, sans-serif;
+  --type-mono: var(--font-google-sans-code), "Cascadia Code", Consolas, monospace;
 }
 
 html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60;
-  --border: #ab4b08;
+  color-scheme: dark;
+  --page: #181919;
+  --surface: #202221;
+  --foreground: #f0eee8;
+  --foreground-muted: #b0ada5;
+  --signal: #e9e600;
+  --signal-hover: #f4f000;
+  --signal-ink: #181919;
+  --accent: #e9e600;
+  --muted: #2b2d2b;
+  --border: #66665e;
+  --border-soft: #3d3f3b;
 }
 
 @theme inline {
-  --font-app: var(--font-google-sans-code);
-  --color-background: var(--background);
+  --font-app: var(--type-body);
+  --font-display: var(--type-display);
+  --font-mono: var(--type-mono);
+  --color-background: var(--page);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
+  --color-signal: var(--signal);
   --color-muted: var(--muted);
   --color-border: var(--border);
 }
@@ -33,22 +53,35 @@ html[data-theme="dark"] {
 @layer base {
   * {
     @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
   }
+
   html {
     @apply overflow-y-scroll scroll-smooth;
+    background: var(--page);
   }
+
   body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
+    @apply flex min-h-svh flex-col bg-background font-app text-foreground;
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    transition: background-color 180ms ease, color 180ms ease;
   }
+
   a,
   button {
-    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-offset-4 focus-visible:outline-2 focus-visible:outline-dashed;
   }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
+  }
+
+  ::selection {
+    color: var(--foreground);
+    background: var(--signal);
   }
 }
 
@@ -57,15 +90,30 @@ html[data-theme="dark"] {
 }
 
 @utility app-layout {
-  @apply mx-auto w-full max-w-app px-4;
+  @apply mx-auto w-full max-w-6xl px-6;
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  color: var(--foreground) !important;
+  background: var(--signal);
+  text-decoration: none;
 }
 
-/* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
-/* Anything that has been anchored to should have extra scroll margin */
 :target {
-  scroll-margin-block: 1rem;
+  scroll-margin-block: 1.5rem;
+}
+
+@media (max-width: 639px) {
+  .app-layout { @apply px-5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
 }

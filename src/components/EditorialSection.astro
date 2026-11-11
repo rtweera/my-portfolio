@@ -1,0 +1,17 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  labelledBy?: string;
+}
+
+const { id, class: className = "", labelledBy } = Astro.props;
+---
+
+<section id={id} class:list={["editorial-section", className]} aria-labelledby={labelledBy}>
+  <slot />
+</section>
+
+<style>
+  .editorial-section { padding-block: clamp(2.75rem, 7vw, 6rem); border-top: 1px solid var(--border); }
+</style>

@@ -4,6 +4,10 @@
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
     @apply prose;
+    max-width: 72ch;
+    color: var(--foreground);
+    font-family: var(--type-body);
+    line-height: 1.75;
 
     h1,
     h2,
@@ -11,10 +15,9 @@
     h4,
     th {
       @apply mb-3 text-foreground;
-    }
-
-    h3 {
-      @apply italic;
+      font-family: var(--type-display);
+      font-weight: 700;
+      letter-spacing: -.035em;
     }
 
     p,
@@ -28,7 +31,8 @@
     }
 
     a {
-      @apply wrap-break-word text-foreground decoration-dashed underline-offset-4 hover:text-accent focus-visible:no-underline;
+      @apply wrap-break-word text-foreground underline-offset-4 hover:text-accent focus-visible:no-underline;
+      text-decoration-thickness: 1px;
     }
 
     ul {
@@ -67,7 +71,9 @@
     }
 
     code {
-      @apply rounded bg-muted/75 p-1 wrap-break-word text-foreground before:content-none after:content-none;
+      @apply rounded-none bg-muted/75 p-1 wrap-break-word text-foreground before:content-none after:content-none;
+      font-family: var(--type-mono);
+      font-size: .88em;
     }
 
     .astro-code code {
