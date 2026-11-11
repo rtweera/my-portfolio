@@ -4,9 +4,10 @@ interface Props {
   label?: string;
   aside?: string;
   level?: 2 | 3;
+  id?: string;
 }
 
-const { title, label, aside, level = 2 } = Astro.props;
+const { title, label, aside, level = 2, id } = Astro.props;
 const Heading = `h${level}` as const;
 ---
 
@@ -15,7 +16,7 @@ const Heading = `h${level}` as const;
     {label && <p class="editorial-label">{label}</p>}
     <div class="editorial-heading-row">
       <span class="editorial-slash" aria-hidden="true"></span>
-      <Heading>{title}</Heading>
+      <Heading id={id}>{title}</Heading>
     </div>
   </div>
   {aside && <p class="editorial-heading-aside">{aside}</p>}

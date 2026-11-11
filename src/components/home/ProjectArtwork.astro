@@ -1,0 +1,79 @@
+---
+interface Props {
+  kind: "autochess" | "sentiview" | "microservice" | "stumblepanni";
+  title: string;
+}
+
+const { kind, title } = Astro.props;
+---
+
+<svg class:list={["home-project-art", `art-${kind}`]} viewBox="0 0 720 330" role="img" aria-label={title}>
+  <defs>
+    <pattern id={`art-grid-${kind}`} width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width=".7" />
+    </pattern>
+  </defs>
+  <rect width="720" height="330" fill={`url(#art-grid-${kind})`} />
+
+  {kind === "autochess" && (
+    <g>
+      <path class="chess-board-frame" d="M133 62h300v216h-300z" />
+      <path class="chess-board-grid" d="M170.5 62v216M208 62v216M245.5 62v216M283 62v216M320.5 62v216M358 62v216M395.5 62v216M133 89h300M133 116h300M133 143h300M133 170h300M133 197h300M133 224h300M133 251h300" />
+      <path class="chess-square" d="M133 62h37.5v27H133zm75 27h37.5v27H208zm75-27h37.5v27H283zm75 27h37.5v27H358zM170.5 116H208v27h-37.5zm75 27H283v27h-37.5zm75-27H358v27h-37.5zm75 27H433v27h-37.5zM133 170h37.5v27H133zm75 27h37.5v27H208zm75-27h37.5v27H283zm75 27h37.5v27H358zm-187.5 27H208v27h-37.5zm75 27H283v27h-37.5zm75-27H358v27h-37.5z" />
+      <path class="gantry-rail" d="M92 51h388M92 44v16m388-16v16M110 54v10m352-10v10" />
+      <path class="gantry-carriage" d="M313 42h72v27h-72zm20 27v57m32-57v57m-38 0h44l-7 18h-30z" />
+      <path class="gantry-motion" d="M190 103h76v81h76" />
+      <circle class="motion-point" cx="190" cy="103" r="5" /><circle class="motion-point motion-point-end" cx="342" cy="184" r="5" />
+      <text x="133" y="304" class="art-note">BOARD STATE</text><text x="273" y="304" class="art-note">MOVE COMPUTATION</text><text x="405" y="304" class="art-note">XY MOTION</text>
+      <path class="callout-line" d="M385 100h70l28-23h48" /><text x="537" y="70" class="art-callout">CARRIAGE / MAGNET</text>
+    </g>
+  )}
+
+  {kind === "sentiview" && (
+    <g>
+      <path class="flow-line" d="M179 159h95m117 0h111" />
+      <g class="email-sheet"><path d="m43 98 78-43 80 45v102l-79 44-79-46z"/><path d="m43 98 79 48 79-46M67 126v49m0 0 38-20m-38 20 62 4"/></g>
+      <g class="email-sheet sheet-back"><path d="m24 78 78-43 80 45v102l-79 44-79-46z"/><path d="m24 78 79 48 79-46"/></g>
+      <rect x="273" y="83" width="118" height="151" class="analysis-panel" />
+      <path class="analysis-line" d="M294 111h76m-76 18h57m-57 30h76m-76 18h58m-58 29h76" />
+      <circle cx="352" cy="139" r="5" class="yellow-dot" />
+      <rect x="502" y="69" width="174" height="173" class="dashboard-panel" />
+      <path class="dashboard-line" d="M520 93h137m-137 13h83" />
+      <path class="dashboard-bar" d="M523 216v-32h21v32zm37 0v-63h21v63zm37 0v-45h21v45zm37 0v-88h21v88z" />
+      <path class="small-axis" d="M520 220h140" />
+      <text x="65" y="270" class="art-note">EMAIL INGESTION</text><text x="282" y="260" class="art-note">AI ANALYSIS</text><text x="522" y="266" class="art-note">ANALYTICS VIEW</text>
+    </g>
+  )}
+
+  {kind === "microservice" && (
+    <g>
+      <rect x="47" y="103" width="123" height="112" class="service-panel" />
+      <path class="service-code" d="M73 137h69m-69 17h52m-52 17h62" />
+      <text x="74" y="198" class="art-note">API CLIENT</text>
+      <path class="service-flow" d="M170 159h80m139 0h100" />
+      <rect x="253" y="83" width="139" height="151" class="service-core" />
+      <path class="service-code" d="M277 117h91m-91 17h75m-75 33h91m-91 17h66" />
+      <circle cx="323" cy="157" r="7" class="yellow-dot" />
+      <text x="284" y="215" class="art-note">FASTAPI SERVICE</text>
+      <ellipse cx="555" cy="111" rx="57" ry="20" class="database-top" />
+      <path class="database-side" d="M498 111v101c0 11 26 20 57 20s57-9 57-20V111m-114 48c0 11 26 20 57 20s57-9 57-20" />
+      <text x="523" y="264" class="art-note">MONGODB</text>
+      <path class="auth-callout" d="M326 79V54h102" /><text x="436" y="58" class="art-callout">KEYCLOAK JWT</text>
+      <text x="207" y="145" class="art-tiny">HTTP</text><text x="408" y="145" class="art-tiny">DATA</text>
+    </g>
+  )}
+
+  {kind === "stumblepanni" && (
+    <g>
+      <path class="island-outline" d="M381 34c22 1 43 12 56 29 12 15 14 32 24 47 11 17 15 35 12 55-3 18-14 34-23 51-11 21-20 41-35 60-10 13-21 29-36 37-8 5-17-1-23-9-12-14-18-32-25-49-9-20-23-37-29-59-5-18-4-37 3-54 6-16 13-30 19-46 8-21 18-41 36-55 6-5 13-8 21-7z" />
+      <path class="map-contour" d="M382 57c18 2 33 12 43 27 10 15 13 32 21 47 8 15 11 30 8 47-3 16-13 30-21 44-9 17-17 35-30 51-7 9-15 18-22 20-7-3-11-13-16-23-9-17-15-33-23-51-8-17-18-32-22-50-4-15-3-31 3-45 7-16 13-29 19-44 7-16 15-30 28-39 4-3 8-5 12-4z" />
+      <path class="map-contour map-contour-inner" d="M381 83c13 2 24 10 31 21 9 13 11 27 17 40 7 13 9 25 6 39-3 13-11 25-18 37-8 13-13 28-24 41-5 6-10 12-14 14-5-5-8-12-12-21-7-14-13-29-19-43-7-14-15-28-18-43-3-12-2-25 3-36 5-12 10-24 16-36 5-10 12-19 22-25 3-2 7-3 10-2z" />
+      <path class="travel-route" d="M142 220c47-34 65-78 120-72 45 5 48 75 111 63 53-10 51-79 115-73 48 5 68 44 101 25" />
+      <circle cx="142" cy="220" r="5" class="map-stop" /><circle cx="589" cy="163" r="5" class="map-stop" />
+      <path class="map-pin" d="M390 129c-18 0-32 14-32 32 0 25 32 59 32 59s32-34 32-59c0-18-14-32-32-32z" />
+      <circle cx="390" cy="160" r="9" class="map-pin-hole" />
+      <path class="map-label-line" d="M421 150h67l21-19h89" /><text x="511" y="121" class="art-callout">PLACE / CONTEXT</text>
+      <text x="43" y="282" class="art-note">SRI LANKA / TOURIST ASSISTANCE</text>
+    </g>
+  )}
+</svg>

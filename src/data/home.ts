@@ -110,3 +110,44 @@ export const HOME_PAGE_CONTENT = {
     ],
   },
 } as const;
+
+export const HOMEPAGE_EDITORIAL = {
+  projects: [
+    {
+      number: "01",
+      slug: "autochess",
+      title: "AutoChess",
+      category: "ROBOTICS / EMBEDDED SYSTEMS",
+      description:
+        "A physical chessboard senses moves, computes a response with an embedded chess engine, and moves pieces using an XY gantry.",
+      art: "autochess",
+    },
+    {
+      number: "02",
+      slug: "sentiview-icms",
+      title: "SentiView",
+      category: "APPLIED AI / CUSTOMER COMMUNICATIONS",
+      description:
+        "An email analytics service that ingests messages, applies AI classification and summarisation, and feeds a customer communications dashboard.",
+      art: "sentiview",
+    },
+    {
+      number: "03",
+      slug: "chapters-blog-backend",
+      title: "AI Blog Microservice",
+      category: "BACKEND / DISTRIBUTED SYSTEMS",
+      description:
+        "A FastAPI and MongoDB backend for blog posts, comments, replies, reactions, and dashboard analytics, with Keycloak JWT authentication.",
+      art: "microservice",
+    },
+    {
+      number: "04",
+      title: "StumblePanni",
+      category: "TOURISM / SRI LANKA",
+      description: "A tourist assistance application for exploring Sri Lanka.",
+      art: "stumblepanni",
+    },
+  ],
+  closing:
+    "My background spans AI, computer vision, NLP, backend and distributed systems, robotics, and electronics. I care about building useful, reliable systems that connect software with the physical world.",
+} as const;

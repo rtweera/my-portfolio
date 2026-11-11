@@ -3,166 +3,90 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import Card from "@/components/Card.astro";
-import getSortedPosts from "@/utils/getSortedPosts";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import { SOCIALS } from "@/constants";
-import { HOME_PAGE_CONTENT } from "@/data/home";
+import HomeSystemsDiagram from "@/components/home/HomeSystemsDiagram.astro";
+import ProjectArtwork from "@/components/home/ProjectArtwork.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import { HOMEPAGE_EDITORIAL } from "@/data/home";
+import "@/styles/home.css";
 
-const posts = await getCollection("blog");
-
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const { hero, about, currently, focusAreas, highlights, techStack } = HOME_PAGE_CONTENT;
+const collection = await getCollection("blog", ({ data }) => !data.draft);
+const projects = new Map(collection.map(entry => [entry.id, entry]));
+const selectedProjects = HOMEPAGE_EDITORIAL.projects.map(project => {
+  const slug = "slug" in project ? project.slug : undefined;
+  return { ...project, slug, entry: slug ? projects.get(slug) : undefined };
+});
 ---
 
-<Layout>
+<Layout
+  title="Ravindu Weerasinghe — Software & Intelligence"
+  description="Ravindu Weerasinghe is an AI and Software Engineer with a BSc (Hons) in Artificial Intelligence, currently working as a Software Engineer at Pagero."
+>
   <Header />
-  <main id="main-content" data-layout="index" class="app-layout">
-
-    <!-- ─── Hero ─────────────────────────────────────────────── -->
-    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {hero.title}
-      </h1>
-      <p class="mb-2">
-        <strong>{hero.subtitle}</strong>
-      </p>
-      <p class="mt-6">{hero.paragraphs[0]}</p>
-      <p class="mt-6">{hero.paragraphs[1]}</p>
-      {
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">{hero.socialLabel}</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <!-- ─── Featured Projects ─────────────────────────────────── -->
-    {
-      featuredPosts.length > 0 && (
-        <section id="featured" class="pt-12 pb-6 border-b border-border">
-          <h2 class="text-2xl font-semibold tracking-wide">Featured Projects</h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-          <div class="text-center">
-            <LinkButton href="/projects/">
-              All Projects
-              <IconArrowRight class="inline-block rtl:-rotate-180" />
-            </LinkButton>
-          </div>
-        </section>
-      )
-    }
-
-    <!-- ─── About ─────────────────────────────────────────────── -->
-    <section id="about-home" class="border-b border-border pt-12 pb-6">
-      <h2 class="text-2xl font-semibold tracking-wide">{about.title}</h2>
-      <p class="my-6">{about.paragraphs[0]}</p>
-      <p class="my-6">{about.paragraphs[1]}</p>
-      <div class="text-center">
-        <LinkButton href={about.cta.href}>
-          {about.cta.text}
-          <IconArrowRight class="inline-block rtl:-rotate-180" />
-        </LinkButton>
+  <main id="main-content" class="home-page app-layout">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero-copy">
+        <p class="home-kicker">SOFTWARE ENGINEER <span>/</span> AI BACKGROUND</p>
+        <h1 id="home-title">Software<br /><span class="hero-highlight">&amp;</span> intelligence.</h1>
+        <p class="home-hero-intro">I build dependable software systems, explore applied AI, and enjoy the places where software meets hardware.</p>
+        <p class="home-hero-meta">SOFTWARE ENGINEER AT PAGERO <span>/</span> BSc (Hons) IN AI</p>
+        <div class="home-hero-actions">
+          <a class="home-primary-link" href="#selected-work">View my work <span aria-hidden="true">↗</span></a>
+          <a class="home-secondary-link" href="/about/">About me <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="home-hero-art" aria-label="Illustration of AI, software and robotics as connected layers of engineering">
+        <HomeSystemsDiagram />
       </div>
     </section>
 
-    <!-- ─── Highlights ────────────────────────────────────────── -->
-    <section id="highlights-home" class="border-b border-border pt-12 pb-6">
-      <h2 class="text-2xl font-semibold tracking-wide">{highlights.title}</h2>
-      <ul class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {
-          highlights.items.map(({ label, description, href }, i) => (
-            <li class:list={[
-              "rounded border border-border p-4",
-              highlights.items.length % 2 !== 0 && i === highlights.items.length - 1
-                ? "sm:col-span-2"
-                : "",
-            ]}>
-              {href ? (
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : "_self"}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  class="group block"
-                >
-                  <p class="font-semibold text-accent group-hover:underline decoration-dashed underline-offset-4">
-                    {label}
-                  </p>
-                  <p class="mt-1 text-sm opacity-75">{description}</p>
+    <section class="home-work" id="selected-work" aria-labelledby="selected-work-title">
+      <div class="home-work-heading">
+        <SectionHeading title="Selected work" id="selected-work-title" level={2} />
+        <p class="home-work-intro">Projects that bring software, AI and physical systems together.</p>
+      </div>
+
+      <div class="home-project-list">
+        {selectedProjects.map((project, index) => (
+          <article class:list={["home-project", `home-project-${index + 1}`]}>
+            <div class="home-project-visual">
+              {project.entry ? (
+                <a href={`/projects/${project.slug}/`} class="home-art-link" aria-label={`Read about ${project.title}`}>
+                  <ProjectArtwork kind={project.art} title={`${project.title} technical illustration`} />
                 </a>
               ) : (
-                <>
-                  <p class="font-semibold text-accent">{label}</p>
-                  <p class="mt-1 text-sm opacity-75">{description}</p>
-                </>
+                <ProjectArtwork kind={project.art} title={`${project.title} illustrative map`} />
               )}
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <!-- ─── Currently ─────────────────────────────────────────── -->
-    <section id="currently-home" class="border-b border-border pt-12 pb-6">
-      <h2 class="text-2xl font-semibold tracking-wide">{currently.title}</h2>
-      <ul class="mt-5 list-disc space-y-3 ps-6">
-        {currently.items.map(item => <li>{item}</li>)}
-      </ul>
-      <div class="mt-6 text-center">
-        <LinkButton href={currently.cta.href}>
-          {currently.cta.text}
-          <IconArrowRight class="inline-block rtl:-rotate-180" />
-        </LinkButton>
-      </div>
-    </section>
-
-    <!-- ─── Focus Areas ───────────────────────────────────────── -->
-    <section id="focus-areas-home" class="border-b border-border pt-12 pb-6">
-      <h2 class="text-2xl font-semibold tracking-wide">{focusAreas.title}</h2>
-      <p class="mt-4">{focusAreas.text}</p>
-    </section>
-
-    <!-- ─── Tech Stack ────────────────────────────────────────── -->
-    <section id="tech-home" class="pt-12 pb-6">
-      <h2 class="text-2xl font-semibold tracking-wide">{techStack.title}</h2>
-      <div class="mt-6 space-y-4">
-        {
-          techStack.groups.map(({ label, items }) => (
-            <div class="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-              <span class="w-28 shrink-0 text-sm font-semibold text-accent opacity-80">
-                {label}
-              </span>
-              <div class="flex flex-wrap gap-2">
-                {items.map(item => (
-                  <span class="rounded border border-border px-2 py-0.5 text-sm opacity-75">
-                    {item}
-                  </span>
-                ))}
-              </div>
             </div>
-          ))
-        }
+            <div class="home-project-copy">
+              <p class="home-project-category"><span>{project.number}</span><i aria-hidden="true"></i>{project.category}</p>
+              <h3>
+                {project.entry ? <a href={`/projects/${project.slug}/`}>{project.title}</a> : project.title}
+              </h3>
+              <p class="home-project-description">{project.description}</p>
+              {project.entry && <a class="home-project-link" href={`/projects/${project.slug}/`}>Explore project <span aria-hidden="true">↗</span></a>}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
 
+    <section class="home-closing" aria-labelledby="home-closing-title">
+      <div class="home-closing-title">
+        <span class="home-slash" aria-hidden="true"></span>
+        <h2 id="home-closing-title">Software engineering,<br />with an AI perspective.</h2>
+      </div>
+      <div class="home-closing-copy">
+        <p>{HOMEPAGE_EDITORIAL.closing}</p>
+        <a class="home-about-link" href="/about/">More about my background <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
+    if (document.querySelector("#main-content[data-layout='index']")) {
       sessionStorage.setItem("backUrl", "/");
     }
   });

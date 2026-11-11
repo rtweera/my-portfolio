@@ -1,0 +1,59 @@
+<svg class="home-systems-diagram" viewBox="0 0 620 440" role="img" aria-labelledby="home-diagram-title home-diagram-description">
+  <title id="home-diagram-title">Software and intelligence in layers</title>
+  <desc id="home-diagram-description">Three exploded technical plates represent AI and machine learning, software systems, and robotics and embedded systems, joined by alignment guides.</desc>
+  <defs>
+    <pattern id="micro-grid" width="18" height="18" patternUnits="userSpaceOnUse">
+      <path d="M18 0H0V18" fill="none" stroke="currentColor" stroke-opacity=".09" stroke-width=".65" />
+    </pattern>
+  </defs>
+  <rect x="12" y="14" width="596" height="410" fill="url(#micro-grid)" opacity=".42" />
+  <path class="diagram-guide" d="M125 72v270M400 72v270M126 72h274M126 342h274" />
+  <path class="diagram-callout" d="M401 113h52l25-20h48M400 215h58l20 0h48M400 316h54l24 17h48" />
+  <circle class="diagram-joint" cx="401" cy="113" r="3" /><circle class="diagram-joint" cx="400" cy="215" r="3" /><circle class="diagram-joint" cx="400" cy="316" r="3" />
+
+  <!-- AI layer: a model die and its connection points. -->
+  <g class="diagram-plate diagram-ai">
+    <path d="m126 114 144-79 130 74-144 82z" />
+    <path d="m126 114 130 77v17l-130-77zM400 109 256 191v17l144-82z" />
+    <path d="m218 107 62-34 57 32-62 35z" class="diagram-chip" />
+    <path d="m218 107 57 33v13l-57-33zM337 105l-62 35v13l62-35z" class="diagram-chip-side" />
+    <path d="m229 107 50-27 45 26-50 27z" class="diagram-chip-inner" />
+    <path d="M230 107h-18m21 4h-18m21 4h-18m21 4h-18m99-14h17m-20 4h17m-20 4h17m-20 4h17" class="diagram-traces" />
+    <circle cx="155" cy="112" r="2.2" class="diagram-via" /><circle cx="370" cy="109" r="2.2" class="diagram-via" />
+  </g>
+
+  <!-- Software layer: an intentional yellow middle plate. -->
+  <g class="diagram-plate diagram-software">
+    <path d="m126 215 144-79 130 74-144 82z" />
+    <path d="m126 215 130 77v17l-130-77zM400 210l-144 82v17l144-82z" />
+    <path d="m173 216 84-46 85 49-84 47z" class="diagram-module" />
+    <path d="m194 217 20-11 20 12-20 11zM251 226l20-11 20 12-20 11zM308 217l20-11 20 12-20 11z" class="diagram-module-detail" />
+    <path d="m214 218 37 21m40-21-40 21m57-21-17 10" class="diagram-module-line" />
+    <path d="M152 216h14m-16 5h14m-16 5h14m252-16h-14m16 5h-14m12 5h-14" class="diagram-traces" />
+  </g>
+
+  <!-- Robotics layer: board and physical interfaces, kept illustrative. -->
+  <g class="diagram-plate diagram-robotics">
+    <path d="m126 316 144-79 130 74-144 82z" />
+    <path d="m126 316 130 77v17l-130-77zM400 311l-144 82v17l144-82z" />
+    <path d="m173 319 96-53 94 54-96 54z" class="diagram-board" />
+    <path d="m188 320 81-45 78 45-81 45z" class="diagram-board-inner" />
+    <path d="m199 320 69-38 66 38-69 39z" class="diagram-board-core" />
+    <path d="M205 308h-9m9 6h-13m13 6h-15m123-32h10m-10 6h13m-13 6h15m-78 47v10m8-10v13m8-13v15" class="diagram-traces" />
+    <circle cx="181" cy="319" r="2" class="diagram-via" /><circle cx="363" cy="320" r="2" class="diagram-via" />
+  </g>
+
+  <text x="486" y="87" class="diagram-small-label">01 / MODELS</text>
+  <text x="486" y="109" class="diagram-main-label">AI &amp; ML</text>
+  <text x="486" y="128" class="diagram-body-label">Vision · language · learning</text>
+  <text x="486" y="189" class="diagram-small-label">02 / SYSTEMS</text>
+  <text x="486" y="215" class="diagram-main-label">Software</text>
+  <text x="486" y="235" class="diagram-body-label">Services · distributed systems</text>
+  <text x="486" y="310" class="diagram-small-label">03 / PHYSICAL</text>
+  <text x="486" y="337" class="diagram-main-label">Robotics</text>
+  <text x="486" y="357" class="diagram-body-label">Embedded · electronics</text>
+  <text x="27" y="33" class="diagram-fig-label">ENGINEERING / IN LAYERS</text>
+  <path d="M32 407h86" class="diagram-scale" />
+  <path d="M32 403v8m86-8v8" class="diagram-scale-tick" />
+  <text x="128" y="411" class="diagram-fig-label">SOFTWARE × INTELLIGENCE</text>
+</svg>
