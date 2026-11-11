@@ -47,7 +47,7 @@ const selectedProjects = HOMEPAGE_EDITORIAL.projects.map(project => {
 
       <div class="home-project-list">
         {selectedProjects.map((project, index) => (
-          <article class:list={["home-project", `home-project-${index + 1}`]}>
+          <article class:list={["home-project", `home-project-${index + 1}`, index % 2 === 1 && "home-project-image-right"]}>
             <div class="home-project-visual">
               {project.entry ? (
                 <a href={`/projects/${project.slug}/`} class="home-art-link" aria-label={`Read about ${project.title}`}>

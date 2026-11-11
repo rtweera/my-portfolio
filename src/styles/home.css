@@ -74,10 +74,10 @@
 .diagram-board { fill: var(--surface); stroke: var(--foreground); stroke-width: 1; }
 .diagram-board-inner { fill: var(--muted); stroke: var(--foreground); stroke-width: .8; }
 .diagram-board-core { fill: var(--signal); stroke: var(--foreground); stroke-width: .8; }
-.diagram-small-label { fill: var(--foreground-muted); font-size: 8px; letter-spacing: .1em; }
+.diagram-small-label { fill: var(--foreground-muted); font-size: 9px; letter-spacing: .1em; }
 .diagram-main-label { fill: var(--foreground); font: 750 19px var(--type-display); letter-spacing: -.04em; }
 .diagram-body-label { fill: var(--foreground-muted); font: 400 10px var(--type-body); }
-.diagram-fig-label { fill: var(--foreground-muted); font-size: 7px; letter-spacing: .12em; }
+.diagram-fig-label { fill: var(--foreground-muted); font-size: 8px; letter-spacing: .12em; }
 .diagram-scale { stroke: var(--foreground); stroke-width: 1; }
 .diagram-scale-tick { stroke: var(--foreground); stroke-width: 1; }
 
@@ -90,10 +90,10 @@
 .home-work-heading h2 { font-size: clamp(2.4rem, 4.8vw, 3.7rem); }
 .home-work-intro { max-width: 30rem; color: var(--foreground); font-size: .96rem; text-align: right; }
 .home-project-list { border-top: 1px solid var(--border); }
-.home-project { display: grid; min-height: 245px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: stretch; gap: clamp(1.5rem, 4vw, 3.5rem); padding-block: .75rem; border-bottom: 1px solid var(--border); }
-.home-project:nth-child(even) { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
-.home-project:nth-child(even) .home-project-visual { order: 1; }
-.home-project:nth-child(even) .home-project-copy { order: 2; padding-left: clamp(0rem, 2.4vw, 2rem); }
+.home-project { display: grid; min-height: 245px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: stretch; gap: clamp(1.5rem, 4vw, 3.5rem); padding-block: .9rem; border-bottom: 1px solid var(--border); }
+.home-project-image-right { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+.home-project-image-right .home-project-visual { order: 2; }
+.home-project-image-right .home-project-copy { order: 1; padding-right: clamp(0rem, 2.4vw, 2rem); }
 .home-project-visual { position: relative; display: flex; min-height: 225px; align-items: center; justify-content: center; overflow: hidden; background: var(--surface); }
 .home-project-visual::before { position: absolute; z-index: 1; inset: 0; border: 1px solid var(--border-soft); content: ""; pointer-events: none; }
 .home-art-link { display: grid; width: 100%; height: 100%; min-height: 225px; place-items: center; }
@@ -120,9 +120,9 @@
 .motion-point { fill: var(--foreground); }
 .motion-point-end { fill: var(--signal); stroke: var(--foreground); stroke-width: 1.2; }
 .callout-line { fill: none; stroke: var(--foreground-muted); stroke-width: .8; }
-.art-note { fill: var(--foreground-muted); font-size: 8px; letter-spacing: .08em; }
-.art-callout { fill: var(--foreground); font-size: 8px; letter-spacing: .08em; }
-.art-tiny { fill: var(--foreground-muted); font-size: 7px; letter-spacing: .08em; }
+.art-note { fill: var(--foreground-muted); font-size: 10px; letter-spacing: .07em; }
+.art-callout { fill: var(--foreground); font-size: 10px; letter-spacing: .07em; }
+.art-tiny { fill: var(--foreground-muted); font-size: 9px; letter-spacing: .07em; }
 .email-sheet path { fill: var(--surface); stroke: var(--foreground); stroke-width: 1.2; }
 .email-sheet path path { fill: none; }
 .email-sheet > path:nth-child(2) { fill: none; }
@@ -174,7 +174,7 @@
   .home-hero h1 { font-size: clamp(3.55rem, 8vw, 5.3rem); }
   .home-systems-diagram { max-height: 330px; }
   .home-project { min-height: 215px; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: 1.5rem; }
-  .home-project:nth-child(even) { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); }
+  .home-project-image-right { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); }
   .home-project-visual,
   .home-art-link { min-height: 200px; }
   .home-project-copy h3 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
@@ -193,6 +193,8 @@
   .home-primary-link { min-height: 39px; }
   .home-hero-art { margin-inline: -.3rem; }
   .home-systems-diagram { width: 100%; max-height: none; }
+  .diagram-small-label { font-size: 10px; }
+  .diagram-fig-label { font-size: 9px; }
   .home-work { padding-top: 2.35rem; }
   .home-work-heading { align-items: flex-start; flex-direction: column; gap: .45rem; padding-bottom: .9rem; }
   .home-work-heading .editorial-heading-row { gap: .7rem; }
@@ -200,15 +202,18 @@
   .home-work-heading h2 { font-size: 2.55rem; }
   .home-work-intro { max-width: 31rem; font-size: .86rem; text-align: left; }
   .home-project,
-  .home-project:nth-child(even) { grid-template-columns: minmax(0, 1fr); gap: .7rem; padding-block: .8rem 1.1rem; }
-  .home-project:nth-child(even) .home-project-visual,
-  .home-project:nth-child(even) .home-project-copy { order: initial; }
+  .home-project-image-right { grid-template-columns: minmax(0, 1fr); gap: .7rem; padding-block: .9rem 1.15rem; }
+  .home-project-image-right .home-project-visual,
+  .home-project-image-right .home-project-copy { order: initial; }
   .home-project-visual,
   .home-art-link { min-height: 0; aspect-ratio: 1.72 / 1; }
   .home-project-2 .home-project-visual { aspect-ratio: 1.65 / 1; }
   .home-project-3 .home-project-visual { aspect-ratio: 1.75 / 1; }
   .home-project-4 .home-project-visual { aspect-ratio: 1.58 / 1; }
   .home-project-art { width: 100%; height: 100%; }
+  .home-project-art .art-note,
+  .home-project-art .art-callout { font-size: 13px; }
+  .home-project-art .art-tiny { font-size: 11px; }
   .home-project-copy { padding: .15rem .05rem .1rem; }
   .home-project-category { gap: .42rem; font-size: .52rem; }
   .home-project-category span { font-size: .7rem; }
