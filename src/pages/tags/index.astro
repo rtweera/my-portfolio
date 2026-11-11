@@ -1,24 +1,73 @@
 ---
 import { getCollection } from "astro:content";
-import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
-import Tag from "@/components/Tag.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
 import getUniqueTags from "@/utils/getUniqueTags";
+import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
+import { slugifyStr } from "@/utils/slugify";
+import "@/styles/work-search.css";
 
-const posts = await getCollection("blog");
-
-let tags = getUniqueTags(posts);
+const posts = getSortedPosts(
+  await getCollection("blog", ({ data }) => !data.draft)
+);
+const tags = getUniqueTags(posts);
+const tagTopics = tags.map(({ tag, tagName }) => ({
+  tag,
+  tagName,
+  count: posts.filter(post =>
+    post.data.tags.some(name => slugifyStr(name) === tag)
+  ).length,
+}));
 ---
 
-<Layout title={`Tags | ${SITE.title}`}>
+<Layout
+  title={`Browse work by topic | ${SITE.title}`}
+  description="Browse portfolio projects by their technologies and subject areas."
+>
   <Header />
-  <Main pageTitle="Tags" pageDesc="All the tags used in projects.">
-    <ul class="flex flex-wrap gap-6">
-      {tags.map(({ tag, tagName }) => <Tag {tag} {tagName} />)}
-    </ul>
-  </Main>
+  <main
+    id="main-content"
+    class="work-archive-page tag-directory-page app-layout"
+    data-pagefind-ignore
+  >
+    <section class="work-archive-intro" aria-labelledby="tag-directory-title">
+      <div>
+        <p class="archive-kicker">Work / Topics</p>
+        <h1 id="tag-directory-title">Browse by topic.</h1>
+      </div>
+      <p class="work-archive-lead">
+        Explore the project archive through the subjects and technologies
+        connected to each piece of work.
+      </p>
+    </section>
+
+    <section class="tag-directory" aria-labelledby="topic-list-title">
+      <SectionHeading
+        title="Topics"
+        label={`${tagTopics.length} topics`}
+        id="topic-list-title"
+      />
+      <ul class="tag-directory-list">
+        {
+          tagTopics.map(({ tag, tagName, count }) => (
+            <li>
+              <a href={`/tags/${tag}/`}>
+                <span class="tag-directory-name">{tagName}</span>
+                <span class="tag-directory-count">
+                  {count} {count === 1 ? "project" : "projects"}
+                </span>
+                <span class="tag-directory-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
   <Footer />
 </Layout>

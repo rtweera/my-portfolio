@@ -1,14 +1,16 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
-import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Card from "@/components/Card.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ProjectArchiveItem from "@/components/ProjectArchiveItem.astro";
 import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { SITE } from "@/config";
+import "@/styles/project-case.css";
+import "@/styles/work-search.css";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
@@ -16,17 +18,51 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+const pageTitle = page.currentPage === 1 ? "Selected work." : "More work.";
 ---
 
-<Layout title={`Projects | ${SITE.title}`}>
+<Layout
+  title={`Work | ${SITE.title}`}
+  description="Selected software, AI and engineering projects by Ravindu Weerasinghe."
+>
   <Header />
-  <Main pageTitle="Projects" pageDesc="All the projects I've done.">
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+  <main
+    id="main-content"
+    class="work-archive-page work-index-page app-layout"
+    data-pagefind-ignore
+  >
+    <section class="work-archive-intro" aria-labelledby="work-title">
+      <div>
+        <p class="archive-kicker">Work / Projects</p>
+        <h1 id="work-title">{pageTitle}</h1>
+      </div>
+      <p class="work-archive-lead">
+        A collection of projects across software engineering, applied AI and
+        physical systems. Each one is a different way of bringing those
+        interests together.
+        <a class="archive-topics-link" href="/tags/"
+          >Browse all topics <span aria-hidden="true">↗</span></a
+        >
+      </p>
+    </section>
 
-  <Pagination {page} />
+    <section class="work-archive-list" aria-labelledby="projects-title">
+      <SectionHeading
+        title="Projects"
+        label={`${page.data.length} projects on this page`}
+        id="projects-title"
+        level={2}
+      />
+      <div class="archive-project-list">
+        {
+          page.data.map((entry, index) => (
+            <ProjectArchiveItem entry={entry} {index} />
+          ))
+        }
+      </div>
+    </section>
 
+    <Pagination {page} />
+  </main>
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

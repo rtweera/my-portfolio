@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectHeroIllustration from "@/components/ProjectHeroIllustration.astro";
+import { HOMEPAGE_EDITORIAL } from "@/data/home";
+import { slugifyStr } from "@/utils/slugify";
+import { getPath } from "@/utils/getPath";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+  index: number;
+}
+
+const { entry, index } = Astro.props;
+const { title, description, tags, projectVisual, heroSummary } = entry.data;
+const slug = entry.id.split("/").at(-1) ?? entry.id;
+const featured = HOMEPAGE_EDITORIAL.projects.find(
+  project => "slug" in project && project.slug === slug
+);
+const category = featured?.category ?? tags.slice(0, 2).join(" / ");
+const href = getPath(entry.id, entry.filePath);
+const relatedTags = tags.slice(0, 4);
+---
+
+<article
+  class:list={[
+    "archive-project-row",
+    index % 2 === 1 && "archive-project-row--reverse",
+  ]}
+>
+  <a class="archive-project-visual" href={href} aria-label={`View ${title}`}>
+    {projectVisual && <ProjectHeroIllustration kind={projectVisual} />}
+    <span class="archive-visual-cue" aria-hidden="true">View project ↗</span>
+  </a>
+  <div class="archive-project-copy">
+    <p class="archive-project-category">{category}</p>
+    <h2><a href={href}>{title}</a></h2>
+    <p class="archive-project-description">{heroSummary ?? description}</p>
+    <ul class="archive-project-tags" aria-label={`Topics for ${title}`}>
+      {
+        relatedTags.map(tag => (
+          <li>
+            <a href={`/tags/${slugifyStr(tag)}/`}>{tag}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="archive-project-link" href={href}
+      >Project details <span aria-hidden="true">↗</span></a
+    >
+  </div>
+</article>

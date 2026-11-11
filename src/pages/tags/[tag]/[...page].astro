@@ -1,23 +1,24 @@
 ---
 import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
-import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Card from "@/components/Card.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ProjectArchiveItem from "@/components/ProjectArchiveItem.astro";
 import Pagination from "@/components/Pagination.astro";
 import getUniqueTags from "@/utils/getUniqueTags";
 import getPostsByTag from "@/utils/getPostsByTag";
 import { SITE } from "@/config";
+import "@/styles/project-case.css";
+import "@/styles/work-search.css";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
   const tags = getUniqueTags(posts);
 
   return tags.flatMap(({ tag, tagName }) => {
     const tagPosts = getPostsByTag(posts, tag);
-
     return paginate(tagPosts, {
       params: { tag },
       props: { tagName },
@@ -26,25 +27,64 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   });
 }
 
-const params = Astro.params;
-const { tag } = params;
+const { tag = "" } = Astro.params;
 const { page, tagName } = Astro.props;
+const relatedTags = getUniqueTags(page.data)
+  .filter(item => item.tag !== tag)
+  .slice(0, 8);
+const description = `Projects and engineering work tagged ${tagName}.`;
 ---
 
-<Layout title={`Tag: ${tagName} | ${SITE.title}`}>
+<Layout title={`${tagName} | Work | ${SITE.title}`} description={description}>
   <Header />
-  <Main
-    pageTitle={[`Tag:`, `${tagName}`]}
-    titleTransition={tag}
-    pageDesc={`All the articles with the tag "${tagName}".`}
+  <main
+    id="main-content"
+    class="work-archive-page tag-archive-page app-layout"
+    data-pagefind-ignore
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+    <section
+      class="work-archive-intro tag-archive-intro"
+      aria-labelledby="tag-title"
+    >
+      <div>
+        <p class="archive-kicker"><a href="/projects/">Work</a> / Topic</p>
+        <h1 id="tag-title">{tagName}<span class="tag-title-period">.</span></h1>
+      </div>
+      <p class="work-archive-lead">{description}</p>
+    </section>
 
-  <Pagination {page} />
+    {
+      relatedTags.length > 0 && (
+        <nav class="related-topics" aria-label="Related project topics">
+          <span>Related topics</span>
+          <ul>
+            {relatedTags.map(({ tag: relatedTag, tagName: relatedName }) => (
+              <li>
+                <a href={`/tags/${relatedTag}/`}>{relatedName}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
 
+    <section class="work-archive-list" aria-labelledby="tag-projects-title">
+      <SectionHeading
+        title={`Work tagged ${tagName}`}
+        label={`${page.data.length} results on this page`}
+        id="tag-projects-title"
+        level={2}
+      />
+      <div class="archive-project-list">
+        {
+          page.data.map((entry, index) => (
+            <ProjectArchiveItem entry={entry} {index} />
+          ))
+        }
+      </div>
+    </section>
+
+    <Pagination {page} />
+  </main>
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

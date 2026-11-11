@@ -7,11 +7,16 @@ import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
 const { pathname } = Astro.url;
-const currentPath = pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
-const isActive = (path: string) => currentPath === path || currentPath.startsWith(`${path}/`);
+const currentPath =
+  pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
+const isActive = (path: string) =>
+  currentPath === path || currentPath.startsWith(`${path}/`);
+const isWorkActive = isActive("/projects") || isActive("/tags");
 ---
 
-<a id="skip-to-content" class="site-skip-link" href="#main-content">Skip to content</a>
+<a id="skip-to-content" class="site-skip-link" href="#main-content"
+  >Skip to content</a
+>
 
 <header class="site-header app-layout" id="top-nav-wrap">
   <a href="/" class="site-wordmark" aria-label={`${SITE.displayTitle} home`}>
@@ -33,35 +38,73 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
   <nav class="site-navigation" aria-label="Main navigation">
     <ul id="menu-items" class="site-nav-list">
       <li>
-        <a href="/projects/" class:list={{ "active-nav": isActive("/projects") }} aria-current={isActive("/projects") ? "page" : undefined}>Work</a>
+        <a
+          href="/projects/"
+          class:list={{ "active-nav": isWorkActive }}
+          aria-current={isWorkActive ? "page" : undefined}>Work</a
+        >
       </li>
       <li>
-        <a href="/about/" class:list={{ "active-nav": isActive("/about") }} aria-current={isActive("/about") ? "page" : undefined}>About</a>
+        <a
+          href="/about/"
+          class:list={{ "active-nav": isActive("/about") }}
+          aria-current={isActive("/about") ? "page" : undefined}>About</a
+        >
       </li>
       <li>
-        <a href="/now/" class:list={{ "active-nav": isActive("/now") }} aria-current={isActive("/now") ? "page" : undefined}>Now</a>
+        <a
+          href="/now/"
+          class:list={{ "active-nav": isActive("/now") }}
+          aria-current={isActive("/now") ? "page" : undefined}>Now</a
+        >
       </li>
-      {SITE.showArchives && (
-        <li>
-          <LinkButton href="/archives/" class:list={["site-icon-link", { "active-nav": isActive("/archives") }]} title="Archives" aria-label="Archives">
-            <IconArchive /><span class="sr-only">Archives</span>
-          </LinkButton>
-        </li>
-      )}
+      {
+        SITE.showArchives && (
+          <li>
+            <LinkButton
+              href="/archives/"
+              class:list={[
+                "site-icon-link",
+                { "active-nav": isActive("/archives") },
+              ]}
+              title="Archives"
+              aria-label="Archives"
+            >
+              <>
+                <IconArchive />
+                <span class="sr-only">Archives</span>
+              </>
+            </LinkButton>
+          </li>
+        )
+      }
       <li>
-        <LinkButton href="/search/" class="site-icon-link" title="Search" aria-label="Search">
+        <LinkButton
+          href="/search/"
+          class="site-icon-link"
+          title="Search"
+          aria-label="Search"
+        >
           <IconSearch /><span class="sr-only">Search</span>
         </LinkButton>
       </li>
-      {SITE.lightAndDarkMode && (
-        <li>
-          <button id="theme-btn" class="site-theme-toggle" type="button" title="Toggle light and dark theme" aria-label="Toggle light and dark theme">
-            <IconMoon class="theme-icon-moon" />
-            <IconSunHigh class="theme-icon-sun" />
-            <span class="sr-only">Toggle light and dark theme</span>
-          </button>
-        </li>
-      )}
+      {
+        SITE.lightAndDarkMode && (
+          <li>
+            <button
+              id="theme-btn"
+              class="site-theme-toggle"
+              type="button"
+              title="Toggle light and dark theme"
+              aria-label="Toggle light and dark theme"
+            >
+              <IconMoon class="theme-icon-moon" />
+              <IconSunHigh class="theme-icon-sun" />
+              <span class="sr-only">Toggle light and dark theme</span>
+            </button>
+          </li>
+        )
+      }
     </ul>
   </nav>
 </header>
@@ -83,8 +126,13 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
     if (button) {
       const opening = button.getAttribute("aria-expanded") !== "true";
       button.setAttribute("aria-expanded", String(opening));
-      button.setAttribute("aria-label", opening ? "Close navigation" : "Open navigation");
-      document.querySelector("#menu-items")?.classList.toggle("is-open", opening);
+      button.setAttribute(
+        "aria-label",
+        opening ? "Close navigation" : "Open navigation"
+      );
+      document
+        .querySelector("#menu-items")
+        ?.classList.toggle("is-open", opening);
       return;
     }
 
