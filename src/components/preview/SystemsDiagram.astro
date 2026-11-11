@@ -1,0 +1,67 @@
+<div class="atlas-diagram" aria-label="Systems diagram connecting AI, software, data and devices through a central systems layer">
+  <svg viewBox="0 0 560 420" role="img" aria-labelledby="atlas-title atlas-desc">
+    <title id="atlas-title">A map of connected intelligent systems</title>
+    <desc id="atlas-desc">AI, software, data and devices connect through a central systems node, with annotated paths for models, services, signals and deployment.</desc>
+    <defs>
+      <pattern id="atlas-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <path d="M24 0H0V24" fill="none" class="grid-line" />
+      </pattern>
+      <marker id="atlas-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M1 1 6 4 1 7" fill="none" class="arrow-line" />
+      </marker>
+    </defs>
+    <rect x="20" y="20" width="520" height="380" rx="5" fill="url(#atlas-grid)" />
+    <path d="M118 105H220Q246 105 246 131V174M442 105H340Q314 105 314 131V174M118 315H220Q246 315 246 289V246M442 315H340Q314 315 314 289V246" class="route route-teal" marker-end="url(#atlas-arrow)" />
+    <path d="M118 105H178M442 105H382M118 315H178M442 315H382" class="route route-ochre" />
+    <path d="M280 105V174M280 315V246M118 210H220M442 210H340" class="route route-faint" />
+    <g class="diagram-node node-ai" tabindex="0" role="group" aria-label="AI: models and reasoning">
+      <rect x="42" y="72" width="126" height="66" rx="3" />
+      <circle cx="58" cy="94" r="4" class="node-dot" />
+      <text x="70" y="98" class="node-title">AI</text>
+      <text x="58" y="120" class="node-note">MODELS / REASONING</text>
+      <path d="M154 72V62H183" class="leader" />
+      <text x="187" y="65" class="micro-note">INFERENCE</text>
+    </g>
+    <g class="diagram-node node-software" tabindex="0" role="group" aria-label="Software: services and APIs">
+      <rect x="392" y="72" width="126" height="66" rx="3" />
+      <circle cx="408" cy="94" r="4" class="node-dot node-dot-ochre" />
+      <text x="420" y="98" class="node-title">Software</text>
+      <text x="408" y="120" class="node-note">SERVICES / APIS</text>
+      <path d="M468 72V62H438" class="leader" />
+      <text x="398" y="65" class="micro-note">ORCHESTRATION</text>
+    </g>
+    <g class="diagram-node node-data" tabindex="0" role="group" aria-label="Data: signals and knowledge">
+      <rect x="42" y="282" width="126" height="66" rx="3" />
+      <circle cx="58" cy="304" r="4" class="node-dot node-dot-ochre" />
+      <text x="70" y="308" class="node-title">Data</text>
+      <text x="58" y="330" class="node-note">SIGNALS / KNOWLEDGE</text>
+      <path d="M154 348V358H183" class="leader" />
+      <text x="187" y="362" class="micro-note">CONTEXT</text>
+    </g>
+    <g class="diagram-node node-devices" tabindex="0" role="group" aria-label="Devices: sensors and action">
+      <rect x="392" y="282" width="126" height="66" rx="3" />
+      <circle cx="408" cy="304" r="4" class="node-dot" />
+      <text x="420" y="308" class="node-title">Devices</text>
+      <text x="408" y="330" class="node-note">SENSORS / ACTION</text>
+      <path d="M468 348V358H438" class="leader" />
+      <text x="398" y="362" class="micro-note">PHYSICAL WORLD</text>
+    </g>
+    <g class="diagram-center" tabindex="0" role="group" aria-label="Systems: where components work together">
+      <circle cx="280" cy="210" r="62" class="center-halo" />
+      <circle cx="280" cy="210" r="49" class="center-ring" />
+      <path d="M263 210h34M280 193v34" class="center-cross" />
+      <circle cx="280" cy="210" r="5" class="center-dot" />
+      <text x="280" y="272" text-anchor="middle" class="center-label">SYSTEMS</text>
+    </g>
+    <text x="25" y="32" class="corner-label">FIG. 01 / INTERSECTIONS</text>
+    <text x="535" y="389" text-anchor="end" class="corner-label">A WORKING MAP · RTW</text>
+    <path d="M22 210H35M525 210H538M280 22V35M280 385V398" class="tick" />
+  </svg>
+  <div class="atlas-diagram-mobile" aria-label="AI, software, data and devices connect through systems">
+    <div class="mobile-node"><span>01 / MODEL</span><b>AI</b><small>reasoning</small></div>
+    <div class="mobile-node"><span>02 / SERVICE</span><b>Software</b><small>orchestration</small></div>
+    <div class="mobile-system"><span class="mobile-system-line"></span><b>SYSTEMS</b><small>where components work together</small><span class="mobile-system-line"></span></div>
+    <div class="mobile-node"><span>03 / SIGNAL</span><b>Data</b><small>context</small></div>
+    <div class="mobile-node"><span>04 / WORLD</span><b>Devices</b><small>sensing · action</small></div>
+  </div>
+</div>
