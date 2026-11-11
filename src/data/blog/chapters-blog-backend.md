@@ -1,14 +1,15 @@
 ---
 title: "Chapters Blog Backend – FastAPI Microservice for AI Student Chapter Portal"
 description: "A production FastAPI backend powering the blog section of the University of Moratuwa AI Student Chapter portal — covering blog CRUD, comments, replies, likes, and dashboard analytics with Keycloak JWT authentication and MongoDB."
+heroSummary: "A FastAPI and MongoDB backend for blog posts, comments, replies, reactions and dashboard analytics, with Keycloak JWT authentication."
+projectVisual: "blog-service"
+overview: "The Computational Mathematics Department of University of Moratuwa had this Chapter website, which needed a backend for its member portal — a place where members could write blog posts, comment, engage with each other's work, and build a collective knowledge base. I contributed to this backend service, which handles the full content lifecycle from creation through engagement tracking."
 pubDatetime: 2026-04-15
 tags: ["FastAPI", "MongoDB", "Keycloak", "Docker", "Python", "REST API"]
 featured: false
 githubURL: "https://github.com/comp-math-uom/chapters-blogs-backend"
 liveURL: "https://www.aistudentchapter.lk/blog"
 ---
-
-The Computational Mathematics Department of University of Moratuwa had this Chapter website, which needed a backend for its member portal — a place where members could write blog posts, comment, engage with each other's work, and build a collective knowledge base. I contributed to this backend service, which handles the full content lifecycle from creation through engagement tracking.
 
 ## What the service does
 

@@ -1,8 +1,21 @@
 ---
 title: "SentiView – AI-Powered Customer Communications Analytics Platform"
 description: "A full-stack multi-channel sentiment intelligence platform built as a 2nd-year university software project. Spans an Angular 17 dashboard frontend and a FastAPI email analytics microservice with Gemini, AWS Comprehend, MongoDB, and Gmail OAuth."
+heroSummary: "A multi-channel customer communications platform with an AI-powered email ingestion and analysis service."
+projectVisual: "sentiview"
 pubDatetime: 2024-07-18
-tags: ["Full Stack", "Angular", "FastAPI", "MongoDB", "AWS", "Gemini AI", "Docker", "TypeScript", "Python"]
+tags:
+  [
+    "Full Stack",
+    "Angular",
+    "FastAPI",
+    "MongoDB",
+    "AWS",
+    "Gemini AI",
+    "Docker",
+    "TypeScript",
+    "Python",
+  ]
 featured: true
 githubURL: "https://github.com/rtweera/iCSMS-email"
 liveURL: "https://i-cms-frontend.vercel.app"

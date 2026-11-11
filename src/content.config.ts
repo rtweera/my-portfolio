@@ -17,6 +17,11 @@ const blog = defineCollection({
       tags: z.array(z.string()).default(["others"]),
       ogImage: image().or(z.string()).optional(),
       description: z.string(),
+      heroSummary: z.string().optional(),
+      overview: z.string().optional(),
+      projectVisual: z
+        .enum(["autochess", "sentiview", "blog-service"])
+        .optional(),
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       githubURL: z.string().url().optional(),

@@ -1,0 +1,275 @@
+---
+type VisualKind = "autochess" | "sentiview" | "blog-service";
+import SectionHeading from "@/components/SectionHeading.astro";
+
+interface Props {
+  kind: VisualKind;
+}
+
+const { kind } = Astro.props;
+
+const architecture = {
+  autochess: {
+    title: "System architecture",
+    intro:
+      "A human move is sensed on the board, interpreted by the game controller, answered by an embedded chess engine, then carried out by the under-board motion system.",
+    description:
+      "AutoChess system flow from reed-switch sensing through move interpretation and the MicroMax engine to XY electromagnet motion.",
+    steps: [
+      {
+        title: "Board sensing",
+        detail: "64 reed switches read through 4×4 analog multiplexers.",
+        icon: "board",
+      },
+      {
+        title: "Move interpretation",
+        detail: "Arduino Mega infers the origin and destination squares.",
+        icon: "controller",
+      },
+      {
+        title: "Serial handoff",
+        detail: "The detected move is sent to the second controller.",
+        icon: "serial",
+      },
+      {
+        title: "Chess engine",
+        detail: "ESP-based board runs MicroMax to validate and respond.",
+        icon: "engine",
+      },
+      {
+        title: "XY motion control",
+        detail: "Stepper channels position the carriage-mounted magnet.",
+        icon: "motion",
+      },
+      {
+        title: "Piece movement",
+        detail:
+          "The electromagnet lifts and repositions a piece through the board.",
+        icon: "piece",
+      },
+    ],
+    caption:
+      "Illustrative system map based on the project write-up; mechanical proportions are not to scale.",
+  },
+  sentiview: {
+    title: "Email processing flow",
+    intro:
+      "The email analytics microservice connects account authorization, ingestion, structured storage and AI analysis to the customer communications dashboard.",
+    description:
+      "SentiView email flow from Gmail OAuth through FastAPI and MongoDB, then Gemini and AWS Comprehend analysis to dashboard analytics.",
+    steps: [
+      {
+        title: "Gmail OAuth",
+        detail: "Authorize accounts and retrieve email conversations.",
+        icon: "email",
+      },
+      {
+        title: "FastAPI ingestion",
+        detail: "Parse messages and expose the versioned REST API.",
+        icon: "api",
+      },
+      {
+        title: "MongoDB",
+        detail: "Store structured email and analysis data.",
+        icon: "database",
+      },
+      {
+        title: "AI analysis",
+        detail:
+          "Gemini summarizes and classifies; Comprehend scores sentiment.",
+        icon: "ai",
+      },
+      {
+        title: "Analytics dashboard",
+        detail: "Surface email insights for customer-facing teams.",
+        icon: "dashboard",
+      },
+    ],
+    caption:
+      "Illustrative email-service workflow; SentiView also covered calls and social channels.",
+  },
+  "blog-service": {
+    title: "Backend service architecture",
+    intro:
+      "A versioned REST API organizes blog, comment and engagement operations around FastAPI routers, service logic, authentication and MongoDB.",
+    description:
+      "Chapters Blog Backend structure from API clients through the gateway and FastAPI service to MongoDB, with the documented identity paths.",
+    steps: [
+      {
+        title: "API clients",
+        detail: "The member portal consumes the versioned blog REST API.",
+        icon: "client",
+      },
+      {
+        title: "Identity paths",
+        detail:
+          "Gateway-injected X-User-ID in deployment; direct bearer JWT validation through Keycloak JWKS for direct use and testing.",
+        icon: "identity",
+      },
+      {
+        title: "FastAPI service",
+        detail:
+          "Routers, business logic and schemas handle blogs, comments, replies, likes and analytics.",
+        icon: "api",
+      },
+      {
+        title: "MongoDB",
+        detail: "Persist blog content and engagement data.",
+        icon: "database",
+      },
+    ],
+    caption:
+      "Illustrative service map based on the documented gateway and direct-bearer authentication modes.",
+  },
+} as const;
+
+const detail = architecture[kind];
+---
+
+<section
+  class:list={["case-architecture", `case-architecture--${kind}`]}
+  aria-labelledby="project-architecture-title"
+>
+  <div class="case-architecture-heading">
+    <SectionHeading
+      title={detail.title}
+      id="project-architecture-title"
+      level={2}
+    />
+    <p>{detail.intro}</p>
+  </div>
+  <figure class="case-flow-figure">
+    <ol class="case-flow" aria-label={detail.description}>
+      {
+        detail.steps.map((step, index) => (
+          <li class="case-flow-step">
+            <div class="case-flow-node">
+              <span class="case-flow-icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                  {step.icon === "board" && (
+                    <g class="flow-icon-board">
+                      <path d="M5 5h38v38H5zM14.5 5v38M24 5v38M33.5 5v38M5 14.5h38M5 24h38M5 33.5h38" />
+                      <path
+                        d="M14.5 14.5h9.5V24h-9.5z"
+                        class="flow-icon-yellow"
+                      />
+                      <circle
+                        cx="19.25"
+                        cy="19.25"
+                        r="2.2"
+                        class="flow-icon-dot"
+                      />
+                    </g>
+                  )}
+                  {step.icon === "controller" && (
+                    <g class="flow-icon-chip">
+                      <rect x="10" y="10" width="28" height="28" />
+                      <path d="M16 17h16v14H16zM19 21h10m-10 4h7M16 4v6m8-6v6m8-6v6m-16 28v6m8-6v6m8-6v6M4 16h6m-6 8h6m-6 8h6m28-16h6m-6 8h6m-6 8h6" />
+                    </g>
+                  )}
+                  {step.icon === "serial" && (
+                    <g class="flow-icon-serial">
+                      <path d="M5 24h32m-8-8 8 8-8 8M43 11v26" />
+                      <circle cx="8" cy="24" r="3" class="flow-icon-yellow" />
+                      <circle cx="40" cy="11" r="2" />
+                      <circle cx="40" cy="37" r="2" />
+                    </g>
+                  )}
+                  {step.icon === "engine" && (
+                    <g class="flow-icon-chip">
+                      <path d="m24 5 16 9v20l-16 9L8 34V14z" />
+                      <path d="m24 5 0 19 16-10m-16 10L8 14m16 10-16 10m16-10 16 10" />
+                      <circle cx="24" cy="24" r="4" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "motion" && (
+                    <g class="flow-icon-chip">
+                      <path d="M5 12h38M9 12v27m30-27v27M5 39h38M14 17h20v8H14zM20 25v8h8v-8" />
+                      <path d="M21 33h6v6h-6z" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "piece" && (
+                    <g class="flow-icon-piece">
+                      <path d="M19 10c0-3 2-5 5-5s5 2 5 5c0 2-1 4-3 5l2 7c4 2 7 6 7 11H13c0-5 3-9 7-11l2-7c-2-1-3-3-3-5zM12 38h24" />
+                      <path d="M24 22v-6" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "email" && (
+                    <g class="flow-icon-chip">
+                      <rect x="5" y="10" width="38" height="28" />
+                      <path d="m6 12 18 14 18-14" />
+                      <path
+                        d="m6 36 13-11m23 11L29 25"
+                        class="flow-icon-yellow"
+                      />
+                    </g>
+                  )}
+                  {step.icon === "api" && (
+                    <g class="flow-icon-chip">
+                      <path d="M5 12h38v24H5zM5 19h38" />
+                      <circle
+                        cx="11"
+                        cy="15.5"
+                        r="1"
+                        class="flow-icon-yellow"
+                      />
+                      <circle cx="16" cy="15.5" r="1" />
+                      <path d="m18 25-5 4 5 4m12-8 5 4-5 4m-3-10-5 12" />
+                    </g>
+                  )}
+                  {step.icon === "database" && (
+                    <g class="flow-icon-chip">
+                      <path d="M8 11c0-4 8-7 16-7s16 3 16 7v26c0 4-8 7-16 7S8 41 8 37z" />
+                      <path d="M8 11c0 4 8 7 16 7s16-3 16-7M8 24c0 4 8 7 16 7s16-3 16-7" />
+                      <path
+                        d="M8 24c0 4 8 7 16 7s16-3 16-7"
+                        class="flow-icon-yellow"
+                      />
+                    </g>
+                  )}
+                  {step.icon === "ai" && (
+                    <g class="flow-icon-chip">
+                      <rect x="9" y="9" width="30" height="30" />
+                      <path d="M15 18h18m-18 6h12m-12 6h18" />
+                      <circle cx="30" cy="24" r="3" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "dashboard" && (
+                    <g class="flow-icon-chip">
+                      <path d="M6 7h36v34H6zM12 35V25h6v10zm10 0V17h6v18zm10 0V21h6v14z" />
+                      <path d="M12 35V25h6v10z" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "client" && (
+                    <g class="flow-icon-chip">
+                      <rect x="5" y="7" width="38" height="34" />
+                      <path d="M5 15h38M12 11h1m5 0h1m5 0h1M13 24h22m-22 7h14" />
+                      <circle cx="35" cy="31" r="4" class="flow-icon-yellow" />
+                    </g>
+                  )}
+                  {step.icon === "identity" && (
+                    <g class="flow-icon-chip">
+                      <path d="M24 4 39 10v12c0 10-6 17-15 22C15 39 9 32 9 22V10z" />
+                      <circle cx="24" cy="19" r="5" class="flow-icon-yellow" />
+                      <path d="M15 33c1-5 4-8 9-8s8 3 9 8" />
+                    </g>
+                  )}
+                </svg>
+              </span>
+              <div class="case-flow-copy">
+                <h3>{step.title}</h3>
+                <p>{step.detail}</p>
+              </div>
+            </div>
+            {index < detail.steps.length - 1 && (
+              <span class="case-flow-arrow" aria-hidden="true">
+                →
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+    <figcaption>{detail.caption}</figcaption>
+  </figure>
+</section>

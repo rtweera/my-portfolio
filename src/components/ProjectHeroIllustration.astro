@@ -1,0 +1,252 @@
+---
+interface Props {
+  kind: "autochess" | "sentiview" | "blog-service";
+}
+
+const { kind } = Astro.props;
+const labels = {
+  autochess: {
+    title: "Illustrative AutoChess machine schematic",
+    description:
+      "A schematic view of the chessboard and an XY electromagnet mechanism beneath its surface. It is an illustration, not a project photograph or a scale drawing.",
+  },
+  sentiview: {
+    title: "SentiView email analysis workflow illustration",
+    description:
+      "Email ingestion and analysis flow from Gmail through a FastAPI service to AI processing and an analytics view.",
+  },
+  "blog-service": {
+    title: "Chapters Blog Backend service illustration",
+    description:
+      "A backend service diagram showing API clients, the FastAPI service, authentication and MongoDB.",
+  },
+} as const;
+---
+
+<svg
+  class="project-hero-illustration"
+  viewBox="0 0 840 460"
+  role="img"
+  aria-labelledby="project-hero-illustration-title project-hero-illustration-description"
+>
+  <title id="project-hero-illustration-title">{labels[kind].title}</title>
+  <desc id="project-hero-illustration-description"
+    >{labels[kind].description}</desc
+  >
+  <defs>
+    <pattern
+      id={`hero-grid-${kind}`}
+      width="20"
+      height="20"
+      patternUnits="userSpaceOnUse"
+    >
+      <path d="M20 0H0V20" class="hero-grid-line"></path>
+    </pattern>
+    <pattern
+      id="chess-checks"
+      width="75"
+      height="75"
+      patternUnits="userSpaceOnUse"
+    >
+      <path
+        d="M0 0h37.5v37.5H0zm37.5 37.5H75V75H37.5z"
+        class="hero-check-square"></path>
+    </pattern>
+  </defs>
+
+  <rect width="840" height="460" class="hero-artground"></rect>
+  <rect width="840" height="460" fill={`url(#hero-grid-${kind})`}></rect>
+
+  {
+    kind === "autochess" && (
+      <g class="hero-chess-art">
+        <text x="48" y="42" class="hero-label">
+          BOARD STATE · 64 SENSORS
+        </text>
+        <rect x="48" y="58" width="324" height="324" class="hero-board-frame" />
+        <rect
+          x="48"
+          y="58"
+          width="324"
+          height="324"
+          fill="url(#chess-checks)"
+        />
+        <path
+          d="M88.5 58v324m40.5-324v324m40.5-324v324m40.5-324v324m40.5-324v324m40.5-324v324m40.5-324v324M48 98.5h324M48 139h324M48 179.5h324M48 220h324M48 260.5h324M48 301h324M48 341.5h324"
+          class="hero-board-grid"
+        />
+        <rect
+          x="210"
+          y="179.5"
+          width="40.5"
+          height="40.5"
+          class="hero-selected-square"
+        />
+        <path
+          d="M230 212c-8-4-12-12-11-19l8-12 3-12 10 8 8-1 6 7-3 10 6 6v13zm-5-31 8 5 7-2m-20 19h27"
+          class="hero-chess-piece"
+        />
+        <text x="48" y="408" class="hero-label">
+          REED-SWITCH MATRIX
+        </text>
+        <text x="48" y="430" class="hero-note">
+          Origin and destination inferred from board-state changes
+        </text>
+
+        <path d="M390 218h36" class="hero-link-line" />
+        <path d="m418 211 8 7-8 7" class="hero-link-arrow" />
+
+        <text x="453" y="42" class="hero-label">
+          XY MOTION · UNDER-BOARD CUTAWAY
+        </text>
+        <path d="M462 126h332v23H462z" class="hero-surface" />
+        <path d="M462 126h332" class="hero-surface-line" />
+        <path
+          d="M594 85c-3-12 6-22 19-22 10 0 18 7 18 17 0 6-4 12-8 15l-4 13h-18l-3-12c-2-3-4-7-4-11zm10 23h22m-20 8h18"
+          class="hero-piece-line"
+        />
+        <path d="M615 149v24" class="hero-field-line" />
+        <path d="M602 171h26l-3 10h-20z" class="hero-magnet" />
+        <path
+          d="M477 208h304m-274 0v95m244-95v95M466 303h327"
+          class="hero-gantry-rail"
+        />
+        <path d="M477 216v78m304-78v78" class="hero-gantry-cross-rail" />
+        <rect x="591" y="193" width="48" height="32" class="hero-carriage" />
+        <path d="M601 225v15h28v-15" class="hero-carriage-detail" />
+        <circle cx="477" cy="208" r="8" class="hero-motor" />
+        <circle cx="781" cy="208" r="8" class="hero-motor" />
+        <path d="M620 185v8" class="hero-magnet-stem" />
+        <text x="464" y="340" class="hero-label">
+          XY STEPPER GANTRY
+        </text>
+        <text x="464" y="362" class="hero-note">
+          Two stepper channels · carriage-mounted electromagnet
+        </text>
+        <path d="M628 183v-23h31" class="hero-callout" />
+        <text x="665" y="155" class="hero-label">
+          ELECTROMAGNET
+        </text>
+      </g>
+    )
+  }
+
+  {
+    kind === "sentiview" && (
+      <g class="hero-sentiview-art">
+        <path d="M148 224h116m115 0h111m115 0h111" class="hero-flow" />
+        <path
+          d="m253 217 11 7-11 7m105-14 11 7-11 7m105-14 11 7-11 7m105-14 11 7-11 7"
+          class="hero-flow-arrow"
+        />
+        <path d="M46 148 99 119l54 29v70l-54 31-53-31z" class="hero-panel" />
+        <path
+          d="m46 148 53 34 54-34M57 163h20m-20 13h28"
+          class="hero-panel-line"
+        />
+        <text x="44" y="290" class="hero-label">
+          GMAIL OAUTH
+        </text>
+        <text x="44" y="311" class="hero-note">
+          Email ingestion
+        </text>
+        <rect
+          x="266"
+          y="151"
+          width="114"
+          height="145"
+          class="hero-yellow-panel"
+        />
+        <path
+          d="M288 181h70m-70 18h50m-50 24h70m-70 18h56"
+          class="hero-panel-line"
+        />
+        <text x="266" y="324" class="hero-label">
+          FASTAPI
+        </text>
+        <text x="266" y="345" class="hero-note">
+          Parse and store messages
+        </text>
+        <rect x="494" y="130" width="118" height="187" class="hero-panel" />
+        <path
+          d="M515 162h76m-76 21h55m-55 39h76m-76 21h61"
+          class="hero-panel-line"
+        />
+        <circle cx="574" cy="207" r="6" class="hero-yellow-dot" />
+        <text x="494" y="345" class="hero-label">
+          AI ANALYSIS
+        </text>
+        <text x="494" y="366" class="hero-note">
+          Gemini · Comprehend
+        </text>
+        <rect x="723" y="147" width="77" height="151" class="hero-panel" />
+        <path
+          d="M740 274v-36h12v36zm21 0v-62h12v62zm21 0v-48h12v48z"
+          class="hero-chart-bar"
+        />
+        <text x="723" y="324" class="hero-label">
+          DASHBOARD
+        </text>
+        <text x="723" y="345" class="hero-note">
+          Analytics view
+        </text>
+      </g>
+    )
+  }
+
+  {
+    kind === "blog-service" && (
+      <g class="hero-service-art">
+        <rect x="45" y="162" width="144" height="126" class="hero-panel" />
+        <path d="M74 197h83m-83 21h63m-63 21h73" class="hero-panel-line" />
+        <text x="45" y="323" class="hero-label">
+          API CLIENTS
+        </text>
+        <path d="M189 224h87m143 0h89m-82 0h30" class="hero-flow" />
+        <path
+          d="m266 217 11 7-11 7m146-14 11 7-11 7m80-14 11 7-11 7"
+          class="hero-flow-arrow"
+        />
+        <rect
+          x="276"
+          y="139"
+          width="143"
+          height="171"
+          class="hero-yellow-panel"
+        />
+        <path
+          d="M302 177h92m-92 21h73m-73 35h92m-92 21h71"
+          class="hero-panel-line"
+        />
+        <text x="276" y="342" class="hero-label">
+          FASTAPI
+        </text>
+        <text x="276" y="363" class="hero-note">
+          Routers · services · schemas
+        </text>
+        <path
+          d="M486 157v131c0 13 27 23 61 23s61-10 61-23V157m-122 0c0 13 27 23 61 23s61-10 61-23-27-23-61-23-61 10-61 23zm0 60c0 13 27 23 61 23s61-10 61-23"
+          class="hero-database"
+        />
+        <text x="486" y="342" class="hero-label">
+          MONGODB
+        </text>
+        <text x="486" y="363" class="hero-note">
+          Blog and engagement data
+        </text>
+        <rect x="676" y="112" width="125" height="92" class="hero-panel" />
+        <path d="M696 143h83m-83 18h59" class="hero-panel-line" />
+        <text x="676" y="232" class="hero-label">
+          IDENTITY
+        </text>
+        <text x="676" y="253" class="hero-note">
+          Gateway header or
+        </text>
+        <text x="676" y="272" class="hero-note">
+          Keycloak JWKS JWT
+        </text>
+        <path d="M676 196h-39v28" class="hero-callout" />
+      </g>
+    )
+  }
+</svg>
